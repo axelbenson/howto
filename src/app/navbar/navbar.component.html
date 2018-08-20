@@ -1,0 +1,62 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark primary-color fixed-top scrolling-navbar" id='nav'>
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/logo.png" width="65" height="65" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" routerLink="/main">
+    <h1><span>&nbsp;</span>HowTo</h1>
+  </a>
+</mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/main">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/users">Users</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/instructions">Instructions</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              Sections<span class="caret"></span></a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+                  <div class="divider dropdown-divider"></div>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+              </div>
+          </li>
+          
+      </ul>
+      <!-- Links -->
+      <div id='forms' *ngIf='!isUserLoggedIn'>
+          
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item"><app-authorization-form></app-authorization-form></li>
+              <li class="nav-item"><button id='signup-button' type="button"mdbBtn rounded="true"  mdbWavesEffect routerLink="/signup">Sign Up</button></li>
+            </ul>
+      </div>
+      <div *ngIf='isUserLoggedIn'>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link waves-light" mdbWavesEffect routerLink="/user/{{login}}">{{login}}</a></li>
+          <li class="nav-item"><a class="nav-link waves-light" mdbWavesEffect (click)='logout()' id='logout'>Log Out</a></li>
+        </ul>
+      </div>
+
+<!-- Search form -->
+      
+  </links>
+  <!-- Collapsible content --> 
+</mdb-navbar>
+<!--/.Navbar-->
+

@@ -1,0 +1,27 @@
+h1 {
+    font-weight: bold;
+}
+img {
+    border-radius: 65px;
+	border: 6px solid white;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    color: #eee;
+}
+#logout {
+    color: white;
+}
+#logout:hover {
+    color: #eee;
+}
+nav {
+    width: 400px;
+}
+#signup-button {
+    background: none;
+    box-shadow: none;
+}

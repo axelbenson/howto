@@ -1,0 +1,28 @@
+<section class='animated slideInUp' [hidden]='!isLoaded'>
+<div class="container" id='page'>
+    <!-- Grid column -->
+
+        <div id='info1'>
+            <h5><text class="grey-text">Login: </text>{{userCard.login}}</h5>
+            <h5><text class="grey-text">Email: </text>{{userCard.email}}</h5>
+            <h5><text class="grey-text">Raiting: ★ </text>{{userCard.raiting}}</h5>
+        </div>
+        <div id='avatar'>
+                <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid" alt="Sample avatar">
+        </div>
+        <div id='info2'>
+            <h5><text class="grey-text">Name: </text>{{userCard.name}}</h5>
+            <h5><text class="grey-text">Location: </text>{{userCard.location}}</h5>
+            <h5><text class="grey-text">Age: </text>{{userCard.age}}</h5>
+        </div>
+
+    <!-- Grid column -->
+    
+
+</div>
+<h4 class="text-center" id='posts'>Instructions</h4>
+<app-posts [(postCards)]="postCards"></app-posts>
+</section>
+<div class='text-center' id='spinner' *ngIf='!isLoaded'>
+        <p-progressSpinner fill="white"></p-progressSpinner>
+</div>

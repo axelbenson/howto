@@ -1,0 +1,24 @@
+<div class="row animated slideInUp" [hidden]='!isLoaded'>
+  <div class="col-lg-2 col-md-2 col-sm-2" id='top-users'>
+      <app-top-users></app-top-users>
+  </div>
+  <div class="col-lg-9 col-md-10 col-sm-12" id='posts'>
+      <app-recent-posts></app-recent-posts>
+      <app-top-posts></app-top-posts>
+  </div>
+  <div class='col-lg-1 col-md-1 ' id='medals'>
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/1.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/2.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/3.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/4.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/5.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/6.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/7.png" width="65" height="65" class="d-inline-block align-top" alt="">
+  </div>
+</div>
+<div class='text-center' id='spinner' *ngIf='!isLoaded'>
+  <p-progressSpinner fill="white"></p-progressSpinner>
+</div>
+
+
+
