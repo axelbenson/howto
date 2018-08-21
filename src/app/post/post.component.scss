@@ -210,3 +210,11 @@ mat-panel-description {
     color: #007bff;
     border: none;
 }
+@media only screen and (max-width: 1000px) {
+    div#top-users {
+        display: none;
+        background-color: red;
+    }
+}
+
+

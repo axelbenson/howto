@@ -45,8 +45,8 @@ export class AuthorizationFormComponent implements OnInit {
     }); 
   }
 
-  keypress(key): void {
-    if (key == 13) {
+  keypress(event): void {
+    if (event.key == 13) {
       this.send();
     } 
   }

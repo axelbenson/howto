@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { PostCard } from './post-card';
 import { UserCard } from './user-card';
 import { Step } from './step';
+import { Comment } from './comment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ import { Step } from './step';
 export class HttpService {
 
   constructor(private http: HttpClient) { }
+
+  getComments(postId, login): Observable<Comment[]> {
+    return this.http.get<Comment[]>('http://howto.ru/return_comments.php?postId='+postId+'&login='+login)
+  }
 
   getSteps(postId,numSteps): Observable<Step[]> {
     return this.http.get<Step[]>('http://howto.ru/return_steps.php?postId='+postId+'&numSteps='+numSteps)

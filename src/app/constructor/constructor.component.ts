@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Response } from '../response';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER} from '@angular/cdk/keycodes';
+import { Router } from '@angular/router';
 
 export interface Section {
   value: string;
@@ -37,7 +38,8 @@ export class ConstructorComponent implements OnInit {
   
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) { }
   
   counter: number;
@@ -166,13 +168,13 @@ export class ConstructorComponent implements OnInit {
     this.httpClient.post("http://howto.ru/upload_instruction.php", this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
+          this.router.navigate(['/user/'+localStorage.getItem('currentUser')]);
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:data.error});
         }
         if (data) {this.wait = false;}
         
       });
-      console.log(this.formData.get('author'));
      
    
   }

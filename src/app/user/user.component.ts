@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { HttpService } from '../http.service';
 import { UserCard } from '../user-card';
 import { PostCard } from '../post-card';
@@ -16,8 +15,7 @@ export class UserComponent implements OnInit {
   isLoaded: boolean;
   constructor(
     private route: ActivatedRoute,
-    private httpService: HttpService,
-    private location: Location
+    private httpService: HttpService
   ) {}
 
   ngOnInit() { 

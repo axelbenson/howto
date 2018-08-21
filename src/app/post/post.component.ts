@@ -25,21 +25,21 @@ export class PostComponent implements OnInit {
     PageScrollConfig.defaultScrollOffset = 110;
 }
   post: PostCard;
+  postId: string;
   user: UserCard;
   currentUser: string;
-  steps: Step[];
   isLoaded: boolean;
+  steps: Step[];
   liked: boolean;
   isLoggedIn: boolean;
   formData: FormData = new FormData();
 
   ngOnInit() {
+    this.postId = this.route.snapshot.paramMap.get('id');
     this.isLoaded = false;
     if (localStorage.getItem('currentUser')) {
       this.isLoggedIn = true;
       this.currentUser = localStorage.getItem('currentUser');
-    } else {
-      this.currentUser = '1111';
     }
     this.getPost();
   }

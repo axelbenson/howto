@@ -145,10 +145,12 @@
                           <div class="mat-vertical-stepper-content ">
                             <div class="mat-vertical-content">
                               <div class="ng-star-inserted">
-  
-                                  <div id='commentGroup'>
-                                    comment
-                                  </div>
+
+                                  <hr/>
+                                  <p *ngIf='!isLoggedIn'>You should sign in or sign up to read comments.</p>
+                                  <app-comments-group [(postId)]="postId" *ngIf='isLoggedIn'></app-comments-group>
+
+                        
   
                                 </div>
                               </div>
@@ -165,7 +167,7 @@
       </div>
     </div>
         
-    <div class="col-lg-2 col-md-1 col-sm-12 col-xs-12" id='top-users'>
+    <div class="col-lg-2 col-md-1 col-sm-12 col-xs-1" id='top-users'>
         <app-top-users></app-top-users>
     </div>
         <!--Featured image-->
@@ -173,8 +175,8 @@
         
   </div>
     <!--Grid row-->
+  <hr/>
   
-    <hr class="mb-2 mt-4">
   
   </section>
   <div class='text-center' id='spinner' *ngIf='!isLoaded'>

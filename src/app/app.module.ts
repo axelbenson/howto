@@ -37,6 +37,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { InputsModule, WavesModule, ButtonsModule} from 'angular-bootstrap-md';
+import { CommentsGroupComponent } from './post/comments-group/comments-group.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { InputsModule, WavesModule, ButtonsModule} from 'angular-bootstrap-md';
     PostListComponent,
     UserComponent,
     PostComponent,
-    ConstructorComponent
+    ConstructorComponent,
+    CommentsGroupComponent
   ],
   imports: [
     BrowserModule,

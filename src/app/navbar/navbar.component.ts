@@ -9,7 +9,9 @@ import { SharedService } from '../shared.service';
 export class NavbarComponent implements OnInit {
   isUserLoggedIn: boolean;
   login: string;
-  constructor(private sharedService: SharedService) { 
+  constructor(
+    private sharedService: SharedService
+  ) { 
     this.sharedService.IsUserLoggedIn.subscribe( value => {
       this.isUserLoggedIn = value;
       this.login = localStorage.getItem('currentUser');
