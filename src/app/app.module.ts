@@ -38,6 +38,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { InputsModule, WavesModule, ButtonsModule} from 'angular-bootstrap-md';
 import { CommentsGroupComponent } from './post/comments-group/comments-group.component';
+import { EditorComponent } from './editor/editor.component';
+import { EditablePostsComponent } from './editable-posts/editable-posts.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { CommentsGroupComponent } from './post/comments-group/comments-group.com
     UserComponent,
     PostComponent,
     ConstructorComponent,
-    CommentsGroupComponent
+    CommentsGroupComponent,
+    EditorComponent,
+    EditablePostsComponent
   ],
   imports: [
     BrowserModule,

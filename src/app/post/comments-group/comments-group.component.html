@@ -12,15 +12,17 @@
         </div>
   </div>
   <div id='likes'>
-    <div class='span' *ngIf="comment.liked == 'true'" (click)="updateLikes('dislike', $event, comment.authorLogin, comment.id)">★ </div>
-    <div class='stars' *ngIf="comment.liked == 'false'" (click)="updateLikes('like', $event, comment.authorLogin, comment.id)">★ </div>
-    <div class='raiting'>{{comment.raiting}}</div>
+    <div class='span' id='dislike' *ngIf="comment.liked == 'true'" (click)="updateLikes($event.target, 'dislike', comment.authorLogin, comment.id)">★ </div>
+    <div class='stars' id='like' *ngIf="comment.liked == 'false'" (click)="updateLikes($event.target, 'like', comment.authorLogin, comment.id)">★ </div>
+    <div class='raiting' id='raiting'>{{comment.raiting}}</div>
+    <div id='spinner' hidden='true'><p-progressSpinner [style]="{width: '15px', height: '15px'}" strokeWidth="4" ></p-progressSpinner></div>
   </div>
   <br/><hr class='mt-2'/>
 
 </div>
 <div class="md-form">
     <i class="fa fa-send prefix blue-text" (click)='addComment()'></i>
-   <textarea type="text" id="commentField" [formControl]="comment" class="md-textarea md-textarea-auto form-control" (keydown.enter)="keypress($event)"   mdbInputDirective></textarea>
+   <textarea type="text" id="commentField" [formControl]="comment" class="md-textarea md-textarea-auto form-control" (keydown.enter)="keypress($event)" placeholder="Tell us something..."  mdbInputDirective></textarea>
    <label for="form7">Leave your comment</label>
 </div> 
+

@@ -35,14 +35,15 @@ export class CommentsGroupComponent implements OnInit {
     });
   }
 
-  updateLikes(type, event, author, id) {
+  updateLikes(target, type, author, id): void {
+    target.parentElement.children[2].removeAttribute('hidden');
     this.formData = new FormData;
     this.formData.append('type', type);
     this.formData.append('id', id);
     this.formData.append('author', author);
     this.formData.append('login', this.currentUser);
     this.httpClient.post("http://howto.ru/update_likes.php", this.formData).subscribe(data => {
-      console.log(data);
+      console.log();
     });
     this.getComments(this.postId, this.currentUser);
   }

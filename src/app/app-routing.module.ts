@@ -7,6 +7,7 @@ import { MainComponent }      from './main/main.component';
 import { PostListComponent }      from './post-list/post-list.component';
 import { UserComponent }  from './user/user.component';
 import { PostComponent }  from './post/post.component';
+import { EditorComponent }  from './editor/editor.component';
 import { ConstructorComponent }  from './constructor/constructor.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'signin', component: AuthorizationFormComponent },
   { path: 'users', component: UserListComponent },
   { path: 'main', component: MainComponent },
+  { path: 'editor/:id', component: EditorComponent },
   { path: 'instructions', component: PostListComponent },
   { path: 'user/:login', component: UserComponent },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
