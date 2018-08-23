@@ -49,7 +49,7 @@
       <div *ngIf='isUserLoggedIn'>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect routerLink="/user/{{login}}"><i class="fa fa-user prefix white-text"></i> {{login}}</a>
+                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/user',login]"><i class="fa fa-user prefix white-text"></i> {{login}}</a>
             </li>
             <li class="nav-item" *ngIf="su">
                     <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin"><i class="fa fa-gear prefix white-text"></i> Administer</a>

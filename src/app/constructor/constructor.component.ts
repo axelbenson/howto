@@ -140,7 +140,12 @@ export class ConstructorComponent implements OnInit {
 
   
     for (let i = 0; i < files.length; i++) {
-      this.formData.append('file'+this.file_counter, files[i]);
+      if (this.file_counter == 0) {
+        this.formData.append('file'+this.file_counter, files[i]);
+      } else {
+        this.formData.append('file'+this.counter, files[i]);
+      }
+      
     }
   }
 

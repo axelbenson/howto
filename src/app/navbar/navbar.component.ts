@@ -41,8 +41,13 @@ export class NavbarComponent implements OnInit {
   logout(): void {
     localStorage.setItem('currentUser', "");
     localStorage.setItem('su','');
+    this.su = false;
     this.sharedService.IsUserLoggedIn.next(false);
     this.router.navigate(['/']);
+  }
+
+  routeToUser() {
+    this.router.navigateByUrl('/user/'+this.login);
   }
 
 }

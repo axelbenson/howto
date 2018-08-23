@@ -22,11 +22,12 @@ img {
     border-bottom: 2px solid #007bff;
 }
 #page {
+    margin: 0 auto;
     margin-top: 80px;
     padding-top: 40px;
-    margin-left: 0px;
-    width: 100%;
     max-width: 2000px;
+    padding-left: 0;
+    padding-right: 0;
 }
 .container{
     display: flex;
@@ -45,17 +46,16 @@ img {
     padding-top: 50px;
     clear: both;
     padding-right: 20px;
-    width: 40%;
-    min-width: 300px;
+    width: 350px;
 }
 p {
     margin-bottom: 0px;
 }
 #info2 {
+    display: inline;
     padding-top: 50px;
     padding-left: 20px;
-    width: 40%;
-    min-width: 300px;
+    width: 350px;
 }
 @keyframes ui-progress-spinner-color {
     100%,
@@ -78,14 +78,12 @@ p {
 }
 #frameModalTop {
     margin-top: -80px;
-    overflow: hidden;
+    
 }
 .modal-full-height {
     min-height: 50% !important;
 }
-#bio {
-    padding-top: 120px;
-}
+
 #bio img {
     max-width: 100px;
 }
@@ -141,3 +139,9 @@ p {
   #page {
       padding-bottom: 20px;
   }
+ @media (max-width: 400px) {
+    .modal-body {
+        width: 300px;
+    }
+ }
+   

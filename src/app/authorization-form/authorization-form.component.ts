@@ -15,7 +15,7 @@ export class AuthorizationFormComponent implements OnInit {
 
   hide_modal: boolean;
   wait: boolean;
-  login = new FormControl(null, [Validators.required, Validators.pattern('[A-Za-z0-9]*')]);
+  login = new FormControl(null, [Validators.required, Validators.pattern('[A-Za-z0-9_]*')]);
   password = new FormControl('', [Validators.required, Validators.minLength(6)] );
 
   constructor(
