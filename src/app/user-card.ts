@@ -7,4 +7,6 @@ export class UserCard {
     raiting: number;
     age: number;
     email: string;
+    blocked: number;
+    su: number;
   }

@@ -7,8 +7,16 @@
             <h5><text class="grey-text">Email: </text>{{userCard.email}}</h5>
             <h5><text class="grey-text">Raiting: ★ </text>{{userCard.raiting}}</h5>
         </div>
-        <div id='avatar'>
-                <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid" alt="Sample avatar">
+        <div id='avatar' *ngIf='!self'>
+                <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid">
+        </div>
+        <div id='avatar' class='xoverlay x-simple' *ngIf='self'>
+                <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid x-img-main">
+                <div class="xoverlay-box">
+                        <div class="xoverlay-data x-icon-rotatezoom">
+                            <span class="x-white"><a (click)='frame.show()'><i class="fa fa-pencil"></i></a></span>
+                        </div>
+                </div>
         </div>
         <div id='info2'>
             <h5><text class="grey-text">Name: </text>{{userCard.name}}</h5>
@@ -23,7 +31,72 @@
 <h4 class="text-center" id='posts'>Instructions</h4>
 <app-editable-posts [(postCards)]="postCards" *ngIf='self'></app-editable-posts>
 <app-posts [(postCards)]="postCards" *ngIf='!self'></app-posts>
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div id='bio' class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">Bio Editor
+        </p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+          <div>
+            <div class="text-center bio avatar">
+                    <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid" alt="Sample avatar">
+            </div>
+            
+            <div class="text-center bio drop">
+                    <div class="form-group file-area">
+                        <input type="file" name='pic' (change)="onFileUpload($event)"/>
+                        <div class="file-dummy">
+                        <div class="success" hidden>Ok, you can continue</div>
+                        <div class="default">Choose a new file</div>
+                        </div>
+                    </div>
+            </div>
+        </div>  
+        <br/>
+        <hr>
+        <p class="text-center">
+          <strong>Public Info</strong>
+        </p>
+        <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" [formControl]="name" id="form-name" value="{{userCard.name}}" class="form-control" mdbInputDirective>
+                <label for="form-name">Your name</label>
+        </div>
+        <div class="md-form">
+                <i class="fa fa-map-marker prefix grey-text"></i>
+                <input type="text" [formControl]="location" id="form-location" value="{{userCard.location}}" class="form-control" mdbInputDirective>
+                <label for="form-name">Your location</label>
+        </div>
+        <div class="md-form">
+                <i class="fa fa-calendar prefix grey-text"></i>
+                <input type="text" [formControl]="age" id="form-age" value="{{userCard.age}}" class="form-control" mdbInputDirective>
+                <label for="form-name">Your age</label>
+        </div>
+
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="primary" class="waves-light" (click)='send()' mdbWavesEffect>Save</a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" data-dismiss="modal" mdbWavesEffect (click)="frame.hide()">Cancel</a>
+      </div>
+      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
+    </div>
+  </div>
+</div>
 </section>
 <div class='text-center' id='spinner' *ngIf='!isLoaded'>
         <p-progressSpinner fill="white"></p-progressSpinner>
 </div>
+<p-toast position="bottom-center" life='10000'></p-toast>

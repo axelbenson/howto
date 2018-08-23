@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,16 +10,27 @@ import { SharedService } from '../shared.service';
 export class NavbarComponent implements OnInit {
   isUserLoggedIn: boolean;
   login: string;
+  su: boolean;
   constructor(
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private router: Router
   ) { 
     this.sharedService.IsUserLoggedIn.subscribe( value => {
       this.isUserLoggedIn = value;
       this.login = localStorage.getItem('currentUser');
+      if (localStorage.getItem('su')) {
+        this.su = true;
+      }
   });
+    this.sharedService.NoMoreSu.subscribe( value => {
+    this.su = !value;
+});
   }
 
   ngOnInit() {
+    if (localStorage.getItem('su')) {
+      this.su = true;
+    }
     this.login = localStorage.getItem('currentUser');
     if (this.login) {
       this.sharedService.IsUserLoggedIn.next(true);
@@ -28,7 +40,9 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.setItem('currentUser', "");
+    localStorage.setItem('su','');
     this.sharedService.IsUserLoggedIn.next(false);
+    this.router.navigate(['/']);
   }
 
 }

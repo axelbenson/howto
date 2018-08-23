@@ -40,6 +40,11 @@ import { InputsModule, WavesModule, ButtonsModule} from 'angular-bootstrap-md';
 import { CommentsGroupComponent } from './post/comments-group/comments-group.component';
 import { EditorComponent } from './editor/editor.component';
 import { EditablePostsComponent } from './editable-posts/editable-posts.component';
+import { AdminComponent } from './admin/admin.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSortModule} from '@angular/material/sort';
+import {Sort} from '@angular/material';
 
 
 @NgModule({
@@ -60,7 +65,8 @@ import { EditablePostsComponent } from './editable-posts/editable-posts.componen
     ConstructorComponent,
     CommentsGroupComponent,
     EditorComponent,
-    EditablePostsComponent
+    EditablePostsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +90,10 @@ import { EditablePostsComponent } from './editable-posts/editable-posts.componen
     MatFormFieldModule,
     InputsModule, 
     WavesModule, 
-    ButtonsModule
+    ButtonsModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatSortModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

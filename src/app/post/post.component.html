@@ -128,8 +128,8 @@
             </div>
           </div>
 
-              <div id='comments' (click)="toggle('comments_block')"> 
-                  <mat-expansion-panel>
+              <div id='comments' (click)="toggle($event)"> 
+                  <mat-expansion-panel id='panel'>
                       <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
@@ -141,26 +141,26 @@
                         </mat-panel-description>
                       </mat-expansion-panel-header>
                       
-                      <div id="comments_block" class="mat-vertical-content-container">
-                          <div class="mat-vertical-stepper-content ">
-                            <div class="mat-vertical-content">
-                              <div class="ng-star-inserted">
-
-                                  <hr/>
-                                  <p *ngIf='!isLoggedIn'>You should sign in or sign up to read comments.</p>
-                                  <app-comments-group [(postId)]="postId" *ngIf='isLoggedIn'></app-comments-group>
-
-                        
-  
-                                </div>
-                              </div>
-                            </div>
-                      </div>
+                      
                     
         
                     </mat-expansion-panel>
                   
-                    
+                    <div id="comments_block" class="mat-vertical-content-container">
+                        <div class="mat-vertical-stepper-content ">
+                          <div class="mat-vertical-content">
+                            <div class="ng-star-inserted">
+
+                                <hr/>
+                                <p *ngIf='!isLoggedIn'>You should sign in or sign up to read comments.</p>
+                                <app-comments-group [(postId)]="postId" *ngIf='isLoggedIn'></app-comments-group>
+
+                      
+
+                              </div>
+                            </div>
+                          </div>
+                    </div>
                   </div>
           
           
@@ -175,7 +175,6 @@
         
   </div>
     <!--Grid row-->
-  <hr/>
   
   
   </section>

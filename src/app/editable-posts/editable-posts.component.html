@@ -6,16 +6,33 @@
     <div class="row justify-content-center">
 
         <!--Grid column-->
-        <h4 class="text-center black-text uppercase" *ngIf="postCards.length == 0">No instructions yet.</h4>
+        <div class="col-lg-3 col-md-6 mb-4"  id='new'>
+               
+                <!--Featured image-->
+                <div class="view overlay rounded z-depth-2 mb-2 waves-light" mdbWavesEffect>
+                <a routerLink='/constructor'>
+                    <img src="https://res.cloudinary.com/howtoru/image/upload/img/plus.png" class="img-fluid" > 
+                </a>
+                </div>
+                <!--Excerpt-->
+                <a routerLink='/constructor'>
+                    <br/>
+                <h4 class="mb-2 blue-text font-weight-bold">
+                   <strong>Add new</strong>
+                </h4>
+            </a>
+            
+            </div>
+
         <div class="col-lg-3 col-md-6 mb-4" *ngFor="let postCard of postCards" id='post'>
             
             <!--Featured image-->
             <div class="view overlay rounded z-depth-2 mb-2 waves-light xoverlay x-simple" mdbWavesEffect>
-                <img src="{{postCard.picture}}" class="img-fluid x-img-main" alt="First sample image">
+                <img src="{{postCard.picture}}" class="img-fluid x-img-main" >
                 <div class="xoverlay-box">
-                    <div class="xoverlay-data">
+                    <div class="xoverlay-data x-icon-left-right">
                         <span class="x-white"><a routerLink="/editor/{{postCard.post_id}}"><i class="fa fa-pencil"></i></a></span>
-                      <span class="x-white"><a routerLink="/user/{{postCard.author}}"><i class="fa fa-trash"></i></a></span>
+                      <span class="x-white"><a (click)="frame.show()"><i class="fa fa-trash"></i></a></span>
                     </div>
                 </div>
                 
@@ -47,3 +64,28 @@
 
 </section>
 <!--Section: Blog v.2-->
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" [config]="{backdrop: false, ignoreBackdropClick: true}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Are you sure?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <i class="fa fa-times fa-4x animated rotateIn"></i>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a href="https://mdbootstrap.com/product/angular-bootstrap-pro/" mdbBtn color="danger" outline="true" class="waves-effect"
+          mdbWavesEffect>Yes</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

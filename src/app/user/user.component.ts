@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
+import { FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
 import { UserCard } from '../user-card';
 import { PostCard } from '../post-card';
+import { Response } from '../response';
 
 @Component({
   selector: 'app-user',
@@ -16,9 +20,13 @@ export class UserComponent implements OnInit {
   isLoaded: boolean;
   currentUser: string;
   self: boolean;
+  wait: boolean;
   constructor(
+    
     private sharedService: SharedService,
     private route: ActivatedRoute,
+    private httpClient: HttpClient,
+    private messageService: MessageService,
     private httpService: HttpService
   ) {
     this.sharedService.IsUserLoggedIn.subscribe( value => {
@@ -32,6 +40,10 @@ export class UserComponent implements OnInit {
       }
   });
   }
+  formData: FormData = new FormData();
+  name = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zА-Яа-я \']*')] );
+  age = new FormControl('', [Validators.required, Validators.pattern('[0-9]*')] );
+  location = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zА-Яа-я, ]*')] );
 
   ngOnInit() { 
     this.getUser();
@@ -48,7 +60,7 @@ export class UserComponent implements OnInit {
         this.currentUser = localStorage.getItem('currentUser');
         if (this.currentUser == this.userCard.login) {
           this.self = true;
-        } 
+        }
       });
   }
 
@@ -56,5 +68,47 @@ export class UserComponent implements OnInit {
     const login = this.route.snapshot.paramMap.get('login');
     this.httpService.getUserPosts(login)
       .subscribe(data => this.postCards = data);
+  }
+
+  onFileUpload = (event: Event) => {
+    const target: HTMLInputElement = <HTMLInputElement>event.target;
+    const files: FileList = target.files;
+    target.nextElementSibling.firstElementChild.removeAttribute('hidden');
+    target.nextElementSibling.children[1].setAttribute('hidden', 'true');
+    for (let i = 0; i < files.length; i++) {
+      this.formData.append('file', files[i]);
+    }
+  }
+
+  send(): void {
+    this.wait = true;
+    this.formData.append('id', ''+this.userCard.id);
+    if (!this.name.value){
+      this.formData.append('name', this.userCard.name);
+    } else {
+      this.formData.append('name', this.name.value);
+    }
+    if (!this.age.value){
+      this.formData.append('age', ''+this.userCard.age);
+    } else {
+      this.formData.append('age', this.age.value);
+    }
+    if (!this.location.value){
+      this.formData.append('location', this.userCard.location);
+    } else {
+      this.formData.append('location', this.location.value);
+    }
+
+    this.httpClient.post("http://howto.ru/edit_user.php", this.formData).subscribe((data: Response)=> {
+        if (data.error == "") {
+          this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
+        } else {
+          this.messageService.add({severity:'error', summary:'Error', detail:data.error});
+        }
+        if (data) {this.wait = false;}
+        
+      });
+     
+   
   }
 }

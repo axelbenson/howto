@@ -59,6 +59,9 @@ export class ConstructorComponent implements OnInit {
   needed = new FormControl('');
 
   ngOnInit() {
+    if (!localStorage.getItem('currentUser')) {
+      this.router.navigate(['/']);
+    }
     this.step = document.getElementById('step').cloneNode(true);
     this.counter = 1;
     this.file_counter = -1;

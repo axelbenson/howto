@@ -25,7 +25,6 @@ img {
     margin-top: 80px;
     padding-top: 40px;
     margin-left: 0px;
-    margin-right: 0px;
     width: 100%;
     max-width: 2000px;
 }
@@ -34,6 +33,7 @@ img {
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    flex-wrap: wrap;
 }
 #avatar {
     padding: 20px;
@@ -43,15 +43,19 @@ img {
 #info1 {
     text-align: right;
     padding-top: 50px;
-    width: 100%;
     clear: both;
+    padding-right: 20px;
+    width: 40%;
+    min-width: 300px;
 }
 p {
     margin-bottom: 0px;
 }
 #info2 {
     padding-top: 50px;
-    width: 100%;
+    padding-left: 20px;
+    width: 40%;
+    min-width: 300px;
 }
 @keyframes ui-progress-spinner-color {
     100%,
@@ -72,3 +76,68 @@ p {
 #spinner {
     padding-top: 50vh;
 }
+#frameModalTop {
+    margin-top: -80px;
+    overflow: hidden;
+}
+.modal-full-height {
+    min-height: 50% !important;
+}
+#bio {
+    padding-top: 120px;
+}
+#bio img {
+    max-width: 100px;
+}
+.file-area {
+    position: relative;
+    background-color: #fff;
+    color: #495057;
+    border: #eee dashed 2px; ;
+  }
+  .file-area input[type=file] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .file-area .file-dummy {
+    width: 100%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+  }
+  .file-area:hover .file-dummy {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .file-area input[type=file]:focus + .file-dummy {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  .bio {
+      display: inline-block;
+      height: 100px !important;
+  }
+  .avatar {
+      width: 30%;
+  }
+  .drop {
+      width: 70%;
+  }
+  #avatar {
+      min-width: 200px;
+  }
+  #avatar {
+      padding: 0;
+      border-radius: 200px;
+  }
+  #page {
+      padding-bottom: 20px;
+  }

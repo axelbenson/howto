@@ -9,12 +9,14 @@ import { UserComponent }  from './user/user.component';
 import { PostComponent }  from './post/post.component';
 import { EditorComponent }  from './editor/editor.component';
 import { ConstructorComponent }  from './constructor/constructor.component';
+import { AdminComponent }  from './admin/admin.component';
 
 const routes: Routes = [
   { path: 'signup', component: RegistrationFormComponent },
   { path: 'signin', component: AuthorizationFormComponent },
   { path: 'users', component: UserListComponent },
   { path: 'main', component: MainComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'editor/:id', component: EditorComponent },
   { path: 'instructions', component: PostListComponent },
   { path: 'user/:login', component: UserComponent },

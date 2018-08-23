@@ -35,6 +35,9 @@ export class AuthorizationFormComponent implements OnInit {
     this.httpService.authorize(this.login.value, this.password.value).subscribe((data: Response)=> {
       if (data.error == "") {
         localStorage.setItem("currentUser", this.login.value);
+        if (data.success == "su") {
+          localStorage.setItem('su', this.login.value);
+        }
         this.hide_modal = true;
         this.sharedService.IsUserLoggedIn.next(true);
       } else {
