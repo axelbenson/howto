@@ -43,6 +43,11 @@ export class UserComponent implements OnInit {
         this.self = false;
       }
   });
+  this.sharedService.IsDeletedPost.subscribe( value => {
+    if (value) {
+      this.getPostCards();
+    } 
+});
   }
   formData: FormData = new FormData();
   name = new FormControl('');
@@ -59,6 +64,9 @@ export class UserComponent implements OnInit {
     const login = this.route.snapshot.paramMap.get('login');
     this.httpService.getUser(login)
       .subscribe(user => {
+        if (!user.login) {
+          this.router.navigate(['/main']);
+        }
         this.userCard = user;
         this.isLoaded = true; 
         this.currentUser = localStorage.getItem('currentUser');

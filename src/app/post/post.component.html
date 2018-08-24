@@ -13,7 +13,7 @@
                     <div class="avatar mx-auto">
                         <img src="{{user.avatar}}" class="rounded-circle z-depth-1 img-fluid" >
                     </div>
-                    <h5 class="font-weight-bold mt-2 mb-1">{{user.login}}</h5>
+                    <h5 class="mt-2 mb-1">{{user.login}}</h5>
                     <p class="grey-text">{{user.name}}, {{user.location}}</p>
                     <p class="text-uppercase blue-text" id='raiting'>
                         <strong>★ {{user.raiting}}</strong>
@@ -55,6 +55,7 @@
         <mdb-card-body cascade="true" class="text-center" id='title'>
           <h4>{{post.title}}</h4>
           <p>Written by <a routerLink="/user/{{user.login}}">{{user.login}}</a>, {{post.date}}</p>
+          <a [routerLink]="['/category/',post.category]"><p class="blue-text">{{post.category}}</p></a>
           <div *ngIf="!(liked || !isLoggedIn || (currentUser == post.author) )">
             <div class="stars" (click)='updateStars(1)'>★</div>
             <div class="stars" (click)='updateStars(2)'>★</div>

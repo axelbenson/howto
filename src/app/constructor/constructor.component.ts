@@ -25,14 +25,14 @@ export interface Tag {
 export class ConstructorComponent implements OnInit {
   
   sections: Section[] = [
-    {value:'Hobbies & Entertainment'},
-    {value:'Apartment & Cottage'},
-    {value:'Sport & Fitness'},
+    {value:'Hobbies'},
+    {value:'Apartment'},
+    {value:'Sport'},
     {value:'Internet'},
     {value:'Auto'},
-    {value:'Health and Medicine'},
+    {value:'Health'},
     {value:'Food'},
-    {value:'Fashion & Style'},
+    {value:'Fashion'},
     {value: 'Engineering'},
     {value: 'Other'}
   ];

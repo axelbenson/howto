@@ -4,6 +4,15 @@ section {
 table {
     width: 100%;
     box-shadow: none;
+    
+}
+.mat-cell {
+    font-size: 20px;
+}
+@media (max-width: 900px) {
+    .mat-cell {
+        font-size: 14px;
+    }
 }
 h4 {
     text-transform: uppercase;
@@ -38,4 +47,26 @@ i:hover {
 }
 tr:hover {
     background-color: #eee;
+}
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #0057e7;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #0057e7;
+    }
+    80%,
+    90% {
+        stroke: #0057e7;
+    }
+}
+#login {
+    cursor: pointer;
+}
+#login:hover {
+    color: #007bff;
 }

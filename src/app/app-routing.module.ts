@@ -10,6 +10,8 @@ import { PostComponent }  from './post/post.component';
 import { EditorComponent }  from './editor/editor.component';
 import { ConstructorComponent }  from './constructor/constructor.component';
 import { AdminComponent }  from './admin/admin.component';
+import { CategoryComponent }  from './category/category.component';
+import { SearchComponent }  from './search/search.component';
 
 const routes: Routes = [
   { path: 'signup', component: RegistrationFormComponent },
@@ -20,8 +22,10 @@ const routes: Routes = [
   { path: 'editor/:id', component: EditorComponent },
   { path: 'instructions', component: PostListComponent },
   { path: 'user/:login', component: UserComponent },
+  { path: 'search', component: SearchComponent },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'post/:id', component: PostComponent },
+  { path: 'category/:category', component: CategoryComponent },
   { path: 'constructor', component: ConstructorComponent }
 ];
 

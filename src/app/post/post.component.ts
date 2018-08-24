@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {PageScrollConfig} from 'ng2-page-scroll';
 import {MatStepper} from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { UserCard } from '../user-card';
@@ -20,7 +20,8 @@ export class PostComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router
   ) { 
     PageScrollConfig.defaultScrollOffset = 110;
 }
@@ -48,6 +49,9 @@ export class PostComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.httpService.getPost(id)
     .subscribe((data) => {
+      if (!data.author) {
+        this.router.navigate(['/main']);
+      }
       this.post = data;
       this.checkStars(id,localStorage.getItem('currentUser'));
       this.getUser(this.post.author);

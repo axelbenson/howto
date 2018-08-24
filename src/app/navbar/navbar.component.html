@@ -20,25 +20,43 @@
           <li class="nav-item">
               <a class="nav-link waves-light" mdbWavesEffect routerLink="/users">Users</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect routerLink="/instructions">Instructions</a>
-          </li>
 
           <!-- Dropdown -->
           <li class="nav-item dropdown" dropdown>
               <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-              Categories<span class="caret"></span></a>
+              Instructions<span class="caret"></span></a>
               <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/instructions">All</a>
                   <div class="divider dropdown-divider"></div>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/hobbies']">Hobbies</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/apartment']">Apartment</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/sport']">Sport</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/internet']">Internet</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/auto']">Auto</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/health']">Health</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/food']">Food</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/fashion']">Fashion</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/engineering']">Engineering</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/other']">Other</a>
               </div>
           </li>
+         
           
       </ul>
       <!-- Links -->
+      <div >
+          
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <a class="nav-link waves-light" (click)="search = true;" *ngIf='!search' mdbWavesEffect><i class="fa fa-search prefix white-text"></i> Search</a>
+            </li>
+          </ul>
+    </div>
+            <div class="md-form mt-0" *ngIf='search' id='search'>
+                <i class="fa fa-remove prefix white-text" (click)="search = false;"></i>
+                <input class="form-control mr-sm-2" type="text" (onblur)="search = false;" (keyup)="keypress($event.keyCode, $event)" placeholder="Search">
+            </div>
+    <div *ngIf='!search'>
       <div id='forms' *ngIf='!isUserLoggedIn'>
           
           <ul class="navbar-nav mr-auto">
@@ -46,19 +64,21 @@
               <li class="nav-item"><button id='signup-button' type="button"mdbBtn rounded="true"  mdbWavesEffect routerLink="/signup">Sign Up</button></li>
             </ul>
       </div>
-      <div *ngIf='isUserLoggedIn'>
+      <div id='forms2' *ngIf='isUserLoggedIn'>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/user',login]"><i class="fa fa-user prefix white-text"></i> {{login}}</a>
+                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/user',login]"><i class="fa fa-user prefix white-text"></i><strong *ngIf="suMode">su: </strong> {{login}}</a>
             </li>
             <li class="nav-item" *ngIf="su">
                     <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin"><i class="fa fa-gear prefix white-text"></i> Administer</a>
-                </li>
+            </li>
             <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect (click)='logout()' id='logout'><i class="fa fa-sign-out prefix white-text"> </i>Log Out</a>
+              <a class="nav-link waves-light" *ngIf="!suMode" mdbWavesEffect (click)='logout()' id='logout'><i class="fa fa-sign-out prefix white-text"> </i>Log Out</a>
+              <a class="nav-link waves-light" *ngIf="suMode" mdbWavesEffect (click)='leave()' id='leave'><i class="fa fa-sign-out prefix white-text"> </i>Leave {{login}}</a>
             </li>
         </ul>
       </div>
+    </div>
 
 <!-- Search form -->
       

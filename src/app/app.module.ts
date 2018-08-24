@@ -45,6 +45,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
 import {Sort} from '@angular/material';
+import { CategoryComponent } from './category/category.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import {Sort} from '@angular/material';
     CommentsGroupComponent,
     EditorComponent,
     EditablePostsComponent,
-    AdminComponent
+    AdminComponent,
+    CategoryComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

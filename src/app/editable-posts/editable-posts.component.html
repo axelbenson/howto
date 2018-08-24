@@ -17,9 +17,7 @@
                 <!--Excerpt-->
                 <a routerLink='/constructor'>
                 <br/>
-                <h4 class="mb-2 font-weight-bold">
-                   <strong>Add new</strong>
-                </h4>
+                <h4 class="mb-2">Add new</h4>
             </a>
             
             </div>
@@ -32,20 +30,20 @@
                 <div class="xoverlay-box">
                     <div class="xoverlay-data x-icon-left-right">
                         <span class="x-white"><a routerLink="/editor/{{postCard.post_id}}"><i class="fa fa-pencil"></i></a></span>
-                      <span class="x-white"><a (click)="frame.show()"><i class="fa fa-trash"></i></a></span>
+                      <span class="x-white"><a (click)="frame.show(); catch(postCard.post_id)"><i class="fa fa-trash"></i></a></span>
                     </div>
                 </div>
                 
             </div>
             <a routerLink='/post/{{postCard.post_id}}'>
             <!--Excerpt-->
-            <a href="" class="blue-text">
+            <a href="" class="blue-text" [routerLink]="['/category/',postCard.category]">
                 <h6 class="mb-1 mt-3">
                     <strong>{{postCard.category}}</strong>
                 </h6>
             </a>
-            <h4 class="mb-2 font-weight-bold">
-                <a><strong>{{postCard.title}}</strong></a>
+            <h4 class="mb-2">
+                <a>{{postCard.title}}</a>
             </h4>
             <p>by
                 <a class="font-weight-bold blue-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
@@ -81,10 +79,11 @@
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a href="https://mdbootstrap.com/product/angular-bootstrap-pro/" mdbBtn color="danger" outline="true" class="waves-effect"
+        <a (click)="deletePost(); frame.hide()" mdbBtn color="danger" outline="true" class="waves-effect"
           mdbWavesEffect>Yes</a>
         <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
       </div>
+      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
     </div>
     <!--/.Content-->
   </div>

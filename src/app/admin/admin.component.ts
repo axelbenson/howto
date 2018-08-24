@@ -67,6 +67,12 @@ export class AdminComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+  signin(login) {
+    localStorage.setItem('currentUser', login);
+    this.sharedService.IsUserLoggedIn.next(true);
+    this.router.navigate(['/user/',login]);
+  }
+
   action(type) {
     this.wait = true;
     this.formData = new FormData;

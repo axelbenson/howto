@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable, of } from 'rxjs';
 import { PostCard } from './post-card';
 import { UserCard } from './user-card';
@@ -11,7 +12,15 @@ import { Comment } from './comment';
 })
 export class HttpService {
 
+  formData: FormData = new FormData();
+
   constructor(private http: HttpClient) { }
+
+  search(request): Observable<PostCard[]> {
+    this.formData = new FormData;
+    this.formData.append('request', request);
+    return this.http.post<PostCard[]>("http://howto.ru/search_post.php", this.formData)
+  }
 
   getComments(postId, login): Observable<Comment[]> {
     return this.http.get<Comment[]>('http://howto.ru/return_comments.php?postId='+postId+'&login='+login)
@@ -28,6 +37,11 @@ export class HttpService {
   getPostCards(): Observable<PostCard[]> {
     return this.http.get<PostCard[]>('http://howto.ru/return_post_card.php')
   }
+
+  getCategoryCards(category): Observable<PostCard[]> {
+    return this.http.get<PostCard[]>('http://howto.ru/return_category.php?category='+category)
+  }
+
   getRecentPostCards(): Observable<PostCard[]> {
     return this.http.get<PostCard[]>('http://howto.ru/return_recent_post_cards.php')
   }
