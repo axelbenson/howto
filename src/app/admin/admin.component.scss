@@ -70,3 +70,9 @@ tr:hover {
 #login:hover {
     color: #007bff;
 }
+/deep/ .tooltip-inner {
+    background-color: #007bff !important;
+}
+/deep/ .tooltip-arrow {
+    border-bottom: 7px solid #007bff !important;
+}

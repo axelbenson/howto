@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { CloudData } from 'angular-tag-cloud-module';
 import { Observable, of } from 'rxjs';
 import { PostCard } from './post-card';
 import { UserCard } from './user-card';
+import { UserProfile } from './user-profile';
 import { Step } from './step';
 import { Comment } from './comment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,10 @@ export class HttpService {
     return this.http.post<PostCard[]>("http://howto.ru/search_post.php", this.formData)
   }
 
+  getTags(): Observable<CloudData[]> {
+    return this.http.get<CloudData[]>('http://howto.ru/return_tags.php')
+  }
+
   getComments(postId, login): Observable<Comment[]> {
     return this.http.get<Comment[]>('http://howto.ru/return_comments.php?postId='+postId+'&login='+login)
   }
@@ -32,6 +38,10 @@ export class HttpService {
 
   getPost(id): Observable<PostCard> {
     return this.http.get<PostCard>('http://howto.ru/return_post.php?id='+id)
+  }
+
+  getPostCardsByTag(tag): Observable<PostCard[]> {
+    return this.http.get<PostCard[]>('http://howto.ru/search_tags.php?tag='+tag)
   }
 
   getPostCards(): Observable<PostCard[]> {
@@ -61,8 +71,8 @@ export class HttpService {
     return this.http.get<UserCard[]>('http://howto.ru/return_top_users.php')
   }
 
-  getUser(login: string): Observable<UserCard> {
-    return this.http.get<UserCard>('http://howto.ru/return_user.php'+"?login="+login)
+  getUser(login: string): Observable<UserProfile> {
+    return this.http.get<UserProfile>('http://howto.ru/return_user.php'+"?login="+login)
   }
 
   authorize(login: string, password: string) {

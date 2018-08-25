@@ -44,9 +44,12 @@ import { AdminComponent } from './admin/admin.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
-import {Sort} from '@angular/material';
 import { CategoryComponent } from './category/category.component';
 import { SearchComponent } from './search/search.component';
+import { TagCloudModule } from 'angular-tag-cloud-module';
+import { MyTagCloudComponent } from './tag-cloud/tag-cloud.component';
+import { SearchTagComponent } from './search-tag/search-tag.component';
+import { MedalsComponent } from './medals/medals.component';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { SearchComponent } from './search/search.component';
     EditablePostsComponent,
     AdminComponent,
     CategoryComponent,
-    SearchComponent
+    SearchComponent,
+    MyTagCloudComponent,
+    SearchTagComponent,
+    MedalsComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +103,8 @@ import { SearchComponent } from './search/search.component';
     ButtonsModule,
     MatTableModule,
     MatCheckboxModule,
-    MatSortModule
+    MatSortModule,
+    TagCloudModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

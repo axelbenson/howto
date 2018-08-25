@@ -5,7 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
-import { UserCard } from '../user-card';
+import { UserProfile } from '../user-profile';
 import { PostCard } from '../post-card';
 import { Response } from '../response';
 
@@ -15,12 +15,18 @@ import { Response } from '../response';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  userCard: UserCard;
+  userCard: UserProfile;
   postCards: PostCard[];
   isLoaded: boolean;
   currentUser: string;
   self: boolean;
   wait: boolean;
+  laurel: boolean;
+  champion: boolean;
+  star: boolean;
+  beginner: boolean;
+  commentator: boolean;
+
   constructor(
     
     private sharedService: SharedService,
@@ -70,6 +76,11 @@ export class UserComponent implements OnInit {
         this.userCard = user;
         this.isLoaded = true; 
         this.currentUser = localStorage.getItem('currentUser');
+        if (user.beginner == "true") { this.beginner = true; }
+        if (user.laurel == "true") { this.laurel = true; }
+        if (user.star == "true") { this.star = true; }
+        if (user.champion == "true") { this.champion = true; }
+        if (user.commentator == "true") { this.commentator = true; }
         if (this.currentUser == this.userCard.login) {
           this.self = true;
         }

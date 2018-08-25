@@ -1,20 +1,13 @@
-#top-users {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-    margin-bottom: 0px;
-}
-#medals {
-    margin-top: 120px;
-    margin-bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
-}
 #posts {
-    margin-top: 120px; 
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
-img {
-    margin-bottom: 20px;
+h4 {
+    text-transform: uppercase;
+    margin-top: 120px;
+}
+hr {
+    margin-top: 0px;
 }
 .row {
     margin-left: 0px;
@@ -38,12 +31,4 @@ img {
 }
 #spinner {
     padding-top: 50vh;
-}
-.flex {
-    display: flex;
-}
-@media (max-width: 992px) {
-    #medals {
-        display: none;
-    }
 }

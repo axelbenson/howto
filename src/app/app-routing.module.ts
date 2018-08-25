@@ -12,6 +12,7 @@ import { ConstructorComponent }  from './constructor/constructor.component';
 import { AdminComponent }  from './admin/admin.component';
 import { CategoryComponent }  from './category/category.component';
 import { SearchComponent }  from './search/search.component';
+import { SearchTagComponent }  from './search-tag/search-tag.component';
 
 const routes: Routes = [
   { path: 'signup', component: RegistrationFormComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'post/:id', component: PostComponent },
   { path: 'category/:category', component: CategoryComponent },
+  { path: 'search/:tag', component: SearchTagComponent },
   { path: 'constructor', component: ConstructorComponent }
 ];
 

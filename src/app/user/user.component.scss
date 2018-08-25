@@ -144,4 +144,24 @@ p {
         width: 300px;
     }
  }
-   
+#medals div{
+    display: inline-block;
+}
+#medals {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+#medals /deep/.tooltip {
+    height: 65px !important;
+    margin-top: -93px !important;
+}
+/deep/ .tooltip-inner {
+    background-color: #007bff !important;
+}
+/deep/ .tooltip-arrow {
+    border-bottom: 7px solid #007bff !important;
+}

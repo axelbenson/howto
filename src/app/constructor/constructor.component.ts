@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 export interface Section {
   value: string;
+  label: string;
 }
 
 export interface Tag {
@@ -25,16 +26,16 @@ export interface Tag {
 export class ConstructorComponent implements OnInit {
   
   sections: Section[] = [
-    {value:'Hobbies'},
-    {value:'Apartment'},
-    {value:'Sport'},
-    {value:'Internet'},
-    {value:'Auto'},
-    {value:'Health'},
-    {value:'Food'},
-    {value:'Fashion'},
-    {value: 'Engineering'},
-    {value: 'Other'}
+    {value:'Hobbies', label: 'Hobbies'},
+    {value:'Apartment',label: 'Apartment'},
+    {value:'Sport',label: 'Sport'},
+    {value:'Internet',label: 'Internet'},
+    {value:'Auto',label: 'Auto'},
+    {value:'Health',label: 'Health'},
+    {value:'Food',label: 'Food'},
+    {value:'Fashion',label: 'Fashion'},
+    {value: 'Engineering',label: 'Engineering'},
+    {value: 'Other',label: 'Other'}
   ];
   
   constructor(

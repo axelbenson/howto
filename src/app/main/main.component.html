@@ -5,15 +5,15 @@
   <div class="col-lg-9 col-md-10 col-sm-12" id='posts'>
       <app-recent-posts></app-recent-posts>
       <app-top-posts></app-top-posts>
+       <div class="row justify-content-center">
+           <div class="col-md-12 col-lg-12">
+                <app-tag-cloud id='cloud'></app-tag-cloud>
+           </div>
+       </div>
+      
   </div>
   <div class='col-lg-1 col-md-1 ' id='medals'>
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/1.png" width="65" height="65" class="d-inline-block align-top" alt="">
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/2.png" width="65" height="65" class="d-inline-block align-top" alt="">
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/3.png" width="65" height="65" class="d-inline-block align-top" alt="">
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/4.png" width="65" height="65" class="d-inline-block align-top" alt="">
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/5.png" width="65" height="65" class="d-inline-block align-top" alt="">
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/6.png" width="65" height="65" class="d-inline-block align-top" alt="">
-      <img src="https://res.cloudinary.com/howtoru/image/upload/img/7.png" width="65" height="65" class="d-inline-block align-top" alt="">
+      <app-medals></app-medals>
   </div>
 </div>
 <div class='text-center' id='spinner' *ngIf='!isLoaded'>

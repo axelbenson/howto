@@ -11,7 +11,7 @@
     <mat-form-field>
         <mat-select placeholder="Choose your section" id='form-section' [formControl]="section">
           <mat-option *ngFor="let section of sections" [value]="section.value">
-            {{section.value}}
+            {{section.label}}
           </mat-option>
         </mat-select>
       </mat-form-field>
