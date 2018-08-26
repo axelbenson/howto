@@ -76,8 +76,6 @@ export class AdminComponent implements OnInit {
   action(type) {
     this.wait = true;
     this.formData = new FormData;
-    console.log(this.formData.get)
-    console.log(this.selection.selected);
     for (let a = 0; a < this.selection.selected.length; a++) {
       this.formData.append('data'+a, ''+this.selection.selected[a].id); 
     }

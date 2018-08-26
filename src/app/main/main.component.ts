@@ -13,10 +13,6 @@ export class MainComponent implements OnInit {
   constructor(private sharedService: SharedService) {
     this.sharedService.IsLoaded.subscribe( value => {
     this.isLoaded = value;
-    window.onresize = function () {
-      this.document.getElementById('cloud').setAttribute('style', 'width: 100%; height: 300px; background-color: black;');
-      this.console.log(this.document.getElementById('cloud').style)
-    }
   });
   }
   

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 import { Router } from '@angular/router';
 import { ENTER } from '@angular/cdk/keycodes';
 
@@ -9,6 +11,7 @@ import { ENTER } from '@angular/cdk/keycodes';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  ui: Localization;
   isUserLoggedIn: boolean;
   login: string;
   su: boolean;
@@ -16,11 +19,16 @@ export class NavbarComponent implements OnInit {
   search: boolean;
   constructor(
     private sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private localizationService: LocalizationService
   ) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+      console.log('aa');
+    });
     this.sharedService.IsUserLoggedIn.subscribe( value => {
       this.isUserLoggedIn = value;
       this.login = localStorage.getItem('currentUser');

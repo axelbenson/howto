@@ -10,7 +10,7 @@
     </div>
     
     <mat-form-field>
-        <mat-select placeholder="Choose your section" id='form-section' [formControl]="section" value="{{post.category}}">
+        <mat-select placeholder="Choose a section" id='form-section' [formControl]="section" value="{{post.category}}">
           <mat-option *ngFor="let section of sections" [value]="section.value">
             {{section.value}}
           </mat-option>

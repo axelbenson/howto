@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CloudData } from 'angular-tag-cloud-module';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PostCard } from './post-card';
 import { UserCard } from './user-card';
 import { UserProfile } from './user-profile';
 import { Step } from './step';
 import { Comment } from './comment';
+import { Localization } from './localization';
 
 
 @Injectable({
@@ -73,6 +74,10 @@ export class HttpService {
 
   getUser(login: string): Observable<UserProfile> {
     return this.http.get<UserProfile>('http://howto.ru/return_user.php'+"?login="+login)
+  }
+
+  getLanguage(language): Observable<Localization> {
+    return this.http.get<Localization>('http://howto.ru/return_language.php?id='+ language)
   }
 
   authorize(login: string, password: string) {
