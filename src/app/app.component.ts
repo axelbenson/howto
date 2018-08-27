@@ -9,7 +9,7 @@ import { LocalizationService } from './localization.service';
 export class AppComponent {
   
   constructor(private localizationService: LocalizationService){
-    this.localizationService.getLanguage('keys');
+    this.localizationService.getLanguage((localStorage.getItem('language') || 'ru'));
    
   }
 }

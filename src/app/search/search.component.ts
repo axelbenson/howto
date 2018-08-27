@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { SharedService } from '../shared.service';
 import { PostCard } from '../post-card';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-search',
@@ -9,11 +11,13 @@ import { PostCard } from '../post-card';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  ui: Localization;
   postCards: PostCard[];
   isLoaded: boolean;
   constructor(
     private httpService: HttpService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private localizationService: LocalizationService
   ) {
       this.sharedService.SetSearchRequest.subscribe( value => {
       this.search(this.sharedService.SearchRequest);
@@ -21,6 +25,11 @@ export class SearchComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
+
     this.search(this.sharedService.SearchRequest);
   }
 

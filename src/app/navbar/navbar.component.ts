@@ -11,6 +11,7 @@ import { ENTER } from '@angular/cdk/keycodes';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  language: string;
   ui: Localization;
   isUserLoggedIn: boolean;
   login: string;
@@ -27,7 +28,6 @@ export class NavbarComponent implements OnInit {
     };
     this.localizationService.subject.subscribe( ui => {
       this.ui = ui;
-      console.log('aa');
     });
     this.sharedService.IsUserLoggedIn.subscribe( value => {
       this.isUserLoggedIn = value;
@@ -50,6 +50,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.language = localStorage.getItem('language');
+
     if (localStorage.getItem('su')) {
       this.su = true;
     }
@@ -88,6 +90,11 @@ export class NavbarComponent implements OnInit {
       this.sharedService.SetSearchRequest.next(true);
       this.router.navigate(['/search']);
     } 
+  }
+
+  changeLanguage(language) {
+    localStorage.setItem('language', language);
+    window.location.reload();
   }
 
 }

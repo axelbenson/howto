@@ -5,6 +5,8 @@ import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
 import { PostCard } from '../post-card';
 import { Response } from '../response';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-editable-posts',
@@ -12,6 +14,7 @@ import { Response } from '../response';
   styleUrls: ['./editable-posts.component.scss']
 })
 export class EditablePostsComponent implements OnInit {
+  ui: Localization;
   wait: boolean;
   postId: number;
   formData: FormData = new FormData();
@@ -22,7 +25,8 @@ export class EditablePostsComponent implements OnInit {
     private httpClient: HttpClient,
     private messageService: MessageService,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private localizationService: LocalizationService
   ) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -30,6 +34,10 @@ export class EditablePostsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
   }
 
   catch(id) {

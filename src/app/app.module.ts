@@ -36,7 +36,7 @@ import {MatChipInputEvent} from '@angular/material';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { InputsModule, WavesModule, ButtonsModule} from 'angular-bootstrap-md';
+import { InputsModule, WavesModule, ButtonsModule, CardsFreeModule} from 'angular-bootstrap-md';
 import { CommentsGroupComponent } from './post/comments-group/comments-group.component';
 import { EditorComponent } from './editor/editor.component';
 import { EditablePostsComponent } from './editable-posts/editable-posts.component';
@@ -50,6 +50,9 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { MyTagCloudComponent } from './tag-cloud/tag-cloud.component';
 import { SearchTagComponent } from './search-tag/search-tag.component';
 import { MedalsComponent } from './medals/medals.component';
+import { FooterComponent } from './footer/footer.component';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -76,7 +79,8 @@ import { MedalsComponent } from './medals/medals.component';
     SearchComponent,
     MyTagCloudComponent,
     SearchTagComponent,
-    MedalsComponent
+    MedalsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,10 @@ import { MedalsComponent } from './medals/medals.component';
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
-    TagCloudModule
+    TagCloudModule,
+    InputSwitchModule,
+    FormsModule,
+    CardsFreeModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

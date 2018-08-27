@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { Response } from '../response';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-registration-form',
@@ -11,7 +13,7 @@ import { Response } from '../response';
   providers: [MessageService]
 })
 export class RegistrationFormComponent implements OnInit {
- 
+  ui: Localization;
   login = new FormControl(null, [Validators.required, Validators.pattern('[A-Za-z0-9]*')]);
   email = new FormControl('', [Validators.required, Validators.email] );
   name = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zА-Яа-я \']*')] );
@@ -25,10 +27,15 @@ export class RegistrationFormComponent implements OnInit {
   
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private localizationService: LocalizationService
   ) { }
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
     document.getElementById('form-login').focus();
     this.wait = false;
   }
@@ -65,7 +72,7 @@ export class RegistrationFormComponent implements OnInit {
         
       });
     } else {
-      this.messageService.add({severity:'error', summary:'Error', detail: 'Passwords missmatch.'});
+      this.messageService.add({severity:'error', summary:'Error', detail: this.ui.passwordsMissmatch});
     } 
   }
 

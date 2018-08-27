@@ -8,6 +8,8 @@ import { SharedService } from '../shared.service';
 import { UserProfile } from '../user-profile';
 import { PostCard } from '../post-card';
 import { Response } from '../response';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +17,7 @@ import { Response } from '../response';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  ui: Localization;
   userCard: UserProfile;
   postCards: PostCard[];
   isLoaded: boolean;
@@ -34,7 +37,8 @@ export class UserComponent implements OnInit {
     private httpClient: HttpClient,
     private messageService: MessageService,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private localizationService: LocalizationService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -61,6 +65,10 @@ export class UserComponent implements OnInit {
   location = new FormControl('');
 
   ngOnInit() { 
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
     this.getUser();
     this.getPostCards();
 

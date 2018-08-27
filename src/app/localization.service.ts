@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class LocalizationService {
   public subject = new Subject<any>();
-  ui: Localization;
+  public ui: Localization;
   constructor(private httpService: HttpService) { }
 
   getLanguage(language) {

@@ -77,7 +77,7 @@ export class HttpService {
   }
 
   getLanguage(language): Observable<Localization> {
-    return this.http.get<Localization>('http://howto.ru/return_language.php?id='+ language)
+    return this.http.get<Localization>('http://howto.ru/return_language.php?language='+ language)
   }
 
   authorize(login: string, password: string) {

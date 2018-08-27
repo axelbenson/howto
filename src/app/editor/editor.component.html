@@ -1,7 +1,7 @@
 <section class='animated slideInUp' *ngIf='isLoaded'>
     <p><img src='https://res.cloudinary.com/howtoru/image/upload/v1534550394/img/logo.png'/></p>
-    <h4 class="text-center" id='posts'>Edit your instruction</h4>
-    <p id='info'>If you don't want to change the value of the field, just leave it as it is. If you want to replace images, use the appropriate fields. If you do not select new images, the old ones will be saved.</p>
+    <h4 class="text-center" id='posts'>{{ui.editYourInstruction}}</h4>
+    <p id='info'>{{ui.editorMessage}}</p>
     
     <div class="md-form">
         <i class="fa fa-user prefix grey-text"></i>
@@ -10,9 +10,9 @@
     </div>
     
     <mat-form-field>
-        <mat-select placeholder="Choose a section" id='form-section' [formControl]="section" value="{{post.category}}">
+        <mat-select placeholder="{{ui.chooseACategory}}" id='form-section' [formControl]="section" value="{{post.category}}">
           <mat-option *ngFor="let section of sections" [value]="section.value">
-            {{section.value}}
+            {{section.label}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -39,8 +39,8 @@
         <div class="form-group file-area">
             <input type="file" required="required" step='0' (change)="onFileUpload($event)"/>
             <div class="file-dummy">
-              <div class="success" hidden>Ok, you can continue</div>
-              <div class="default" >Choose the main picture or drag it here</div>
+              <div class="success" hidden>{{ui.canContinue}}</div>
+              <div class="default" >{{ui.chooseTheMainPicture}}</div>
             </div>
         </div>
     </div>
@@ -74,8 +74,8 @@
                           <div class="form-group file-area">
                               <input type="file" name='pic' step='{{step.number}}' (change)="onFileUpload($event)"/>
                               <div class="file-dummy">
-                                <div class="success" hidden>Ok, you can continue</div>
-                                <div class="default">Choose a picture or drag it here</div>
+                                <div class="success" hidden>{{ui.canContinue}}</div>
+                                <div class="default">{{ui.chooseAPicture}}</div>
                               </div>
                           </div>
                       </div> 
@@ -86,7 +86,7 @@
         </div>
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
         <div id='button'>
-            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>Finish</button>
+            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
         </div>
         <p-toast position="bottom-center" life='10000'></p-toast>
         <hr/>

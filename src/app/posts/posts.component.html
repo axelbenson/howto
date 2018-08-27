@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
 
         <!--Grid column-->
-        <h4 class="text-center black-text uppercase" *ngIf="postCards.length == 0">No instructions yet.</h4>
+        <h4 class="text-center black-text uppercase" *ngIf="postCards.length == 0">{{ui.noInstructionsYet}}</h4>
         <div class="col-lg-3 col-md-6 mb-4" *ngFor="let postCard of postCards" id='post'>
             <a routerLink='/post/{{postCard.post_id}}'>
             <!--Featured image-->
@@ -26,7 +26,7 @@
             <h4 class="mb-2" id='postTitle'>
                 <a>{{postCard.title}}</a>
             </h4>
-            <p>by
+            <p>
                 <a class="font-weight-bold blue-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
             <p class="grey-text">{{postCard.description}}</p>
             <p>

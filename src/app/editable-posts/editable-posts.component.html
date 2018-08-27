@@ -17,7 +17,7 @@
                 <!--Excerpt-->
                 <a routerLink='/constructor'>
                 <br/>
-                <h4 class="mb-2">Add new</h4>
+                <h4 class="mb-2">{{ui.addNew}}</h4>
             </a>
             
             </div>
@@ -45,7 +45,7 @@
             <h4 class="mb-2">
                 <a>{{postCard.title}}</a>
             </h4>
-            <p>by
+            <p>
                 <a class="font-weight-bold blue-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
             <p class="grey-text">{{postCard.description}}</p>
             <p>
@@ -69,7 +69,7 @@
     <div class="modal-content text-center">
       <!--Header-->
       <div class="modal-header d-flex justify-content-center">
-        <p class="heading">Are you sure?</p>
+        <p class="heading">{{ui.areYouSure}}</p>
       </div>
 
       <!--Body-->
@@ -80,8 +80,8 @@
       <!--Footer-->
       <div class="modal-footer flex-center">
         <a (click)="deletePost(); frame.hide()" mdbBtn color="danger" outline="true" class="waves-effect"
-          mdbWavesEffect>Yes</a>
-        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+          mdbWavesEffect>{{ui.yes}}</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">{{ui.no}}</a>
       </div>
       <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
     </div>

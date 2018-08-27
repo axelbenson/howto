@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserCard } from '../user-card';
 import { PostCard } from '../post-card';
 import { Step } from '../step';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-post',
@@ -17,11 +19,13 @@ import { Step } from '../step';
 export class PostComponent implements OnInit {
 
 @ViewChild('stepper') stepper: MatStepper;
+ui: Localization;
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private localizationService: LocalizationService
   ) { 
     PageScrollConfig.defaultScrollOffset = 110;
 }
@@ -36,6 +40,10 @@ export class PostComponent implements OnInit {
   formData: FormData = new FormData();
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
     this.postId = this.route.snapshot.paramMap.get('id');
     this.isLoaded = false;
     if (localStorage.getItem('currentUser')) {

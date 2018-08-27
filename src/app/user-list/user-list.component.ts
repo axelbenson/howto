@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { UserCard } from '../user-card';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-user-list',
@@ -8,11 +10,17 @@ import { UserCard } from '../user-card';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
+  ui: Localization;
   userCards: UserCard[];
   isLoaded: boolean;
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+    private localizationService: LocalizationService) { }
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
     this.getUserCards();
   }
 

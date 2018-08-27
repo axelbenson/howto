@@ -25,7 +25,7 @@ export class Localization {
 	"canContinue": string;
 	"chooseTheMainPicture": string;
 	"stepTitle": string;
-	"stepDesciption": string;
+	"stepDescription": string;
 	"chooseAPicture": string;
 	"addStep": string;
 	"finish": string;
@@ -90,6 +90,7 @@ export class Localization {
 	"save": string;
 	"cancel": string;
 	"ourAmazingUsers": string;
+	"setSuperUser": string;
 }
 
 

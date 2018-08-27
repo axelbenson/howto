@@ -4,6 +4,8 @@ import { HttpService } from '../http.service';
 import { Response } from '../response';
 import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-authorization-form',
@@ -12,7 +14,7 @@ import { SharedService } from '../shared.service';
   providers: [MessageService]
 })
 export class AuthorizationFormComponent implements OnInit {
-
+  ui: Localization;
   hide_modal: boolean;
   wait: boolean;
   login = new FormControl(null, [Validators.required, Validators.pattern('[A-Za-z0-9_]*')]);
@@ -21,12 +23,17 @@ export class AuthorizationFormComponent implements OnInit {
   constructor(
     private httpService: HttpService, 
     private messageService: MessageService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private localizationService: LocalizationService
   ) {
     
   }
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
     this.wait = false;
   }
 

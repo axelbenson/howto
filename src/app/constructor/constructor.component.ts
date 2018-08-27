@@ -7,10 +7,12 @@ import { Response } from '../response';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER} from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 export interface Section {
   value: string;
-  label: string;
+  label: any;
 }
 
 export interface Tag {
@@ -24,25 +26,15 @@ export interface Tag {
   providers: [MessageService]
 })
 export class ConstructorComponent implements OnInit {
-  
-  sections: Section[] = [
-    {value:'Hobbies', label: 'Hobbies'},
-    {value:'Apartment',label: 'Apartment'},
-    {value:'Sport',label: 'Sport'},
-    {value:'Internet',label: 'Internet'},
-    {value:'Auto',label: 'Auto'},
-    {value:'Health',label: 'Health'},
-    {value:'Food',label: 'Food'},
-    {value:'Fashion',label: 'Fashion'},
-    {value: 'Engineering',label: 'Engineering'},
-    {value: 'Other',label: 'Other'}
-  ];
+  ui: Localization;
+  sections: Section[];
   
   constructor(
     private sharedService: SharedService,
     private httpClient: HttpClient,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private localizationService: LocalizationService
   ) { }
   
   counter: number;
@@ -63,7 +55,31 @@ export class ConstructorComponent implements OnInit {
     if (!localStorage.getItem('currentUser')) {
       this.router.navigate(['/']);
     }
-    this.step = document.getElementById('step').cloneNode(true);
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
+    
+
+    setTimeout(()=> {
+      this.step = document.getElementById('step').cloneNode(true);
+      let clone = this.step.cloneNode(true);
+      document.getElementById('step').remove(); 
+      clone.addEventListener('keyup', this.autogrow);
+      document.getElementById('add_step').parentElement.insertBefore(clone,document.getElementById('add_step'));
+      this.sections = [
+        {value:'Hobbies', label: this.ui.hobbies},
+        {value:'Apartment',label: this.ui.apartment},
+        {value:'Sport',label: this.ui.sport},
+        {value:'Internet',label: this.ui.internet},
+        {value:'Auto',label: this.ui.auto},
+        {value:'Health',label: this.ui.health},
+        {value:'Food',label: this.ui.food},
+        {value:'Fashion',label: this.ui.fashion},
+        {value: 'Engineering',label: this.ui.engineering},
+        {value: 'Other',label: this.ui.other}
+      ];
+    },1000);
     this.counter = 1;
     this.file_counter = -1;
     this.wait = false;

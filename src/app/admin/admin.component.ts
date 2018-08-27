@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { UserCard } from '../user-card';
 import { Response } from '../response';
 import { SharedService } from '../shared.service';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +17,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
+  ui: Localization;
   userCards: UserCard[];
   isLoaded: boolean;
   wait: boolean;
@@ -30,12 +32,18 @@ export class AdminComponent implements OnInit {
     private httpClient: HttpClient,
     private messageService: MessageService,
     private router: Router,
-    private sharedService: SharedService) { 
+    private sharedService: SharedService,
+    private localizationService: LocalizationService
+  ) {
 
     }
 
   ngOnInit() {
-   
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
+
     if (!localStorage.getItem('su')) {
       this.router.navigate(['/']);
     }

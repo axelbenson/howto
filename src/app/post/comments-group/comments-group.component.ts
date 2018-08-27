@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../http.service';
 import { HttpClient } from '@angular/common/http';
 import { Comment } from '../../comment';
+import { LocalizationService } from '../../localization.service';
+import { Localization } from '../../localization';
 
 @Component({
   selector: 'app-comments-group',
@@ -10,6 +12,7 @@ import { Comment } from '../../comment';
   styleUrls: ['./comments-group.component.scss']
 })
 export class CommentsGroupComponent implements OnInit {
+  ui: Localization;
   comments: Comment[];
   currentUser: string;
   liked: boolean;
@@ -19,9 +22,16 @@ export class CommentsGroupComponent implements OnInit {
   @Input() postId: number;
   constructor(
     private httpClient: HttpClient,
-    private httpService: HttpService) { }
+    private httpService: HttpService,
+    private localizationService: LocalizationService
+  ) { }
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
+
     this.currentUser = localStorage.getItem('currentUser');
     this.getComments(this.postId, this.currentUser);
     setInterval(()=> {

@@ -12,10 +12,13 @@ import { SharedService } from '../shared.service';
 import { UserCard } from '../user-card';
 import { PostCard } from '../post-card';
 import { Step } from '../step';
+import { LocalizationService } from '../localization.service';
+import { Localization } from '../localization';
 
 
 export interface Section {
   value: string;
+  label: any;
 }
 
 export interface Tag {
@@ -28,19 +31,8 @@ export interface Tag {
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
-
-  sections: Section[] = [
-    {value:'Hobbies & Entertainment'},
-    {value:'Apartment & Cottage'},
-    {value:'Sport & Fitness'},
-    {value:'Internet'},
-    {value:'Auto'},
-    {value:'Health and Medicine'},
-    {value:'Food'},
-    {value:'Fashion & Style'},
-    {value: 'Engineering'},
-    {value: 'Other'}
-  ];
+  ui: Localization;
+  sections: Section[];
   
   constructor(
     private sharedService: SharedService,
@@ -48,7 +40,8 @@ export class EditorComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private localizationService: LocalizationService
   ) { }
   
   post: PostCard;
@@ -71,6 +64,26 @@ export class EditorComponent implements OnInit {
   needed = new FormControl('');
 
   ngOnInit() {
+    this.localizationService.subject.subscribe( ui => {
+      this.ui = ui;
+    });
+    this.ui = this.localizationService.ui;
+
+    setTimeout(()=> {
+      this.sections = [
+        {value:'Hobbies', label: this.ui.hobbies},
+        {value:'Apartment',label: this.ui.apartment},
+        {value:'Sport',label: this.ui.sport},
+        {value:'Internet',label: this.ui.internet},
+        {value:'Auto',label: this.ui.auto},
+        {value:'Health',label: this.ui.health},
+        {value:'Food',label: this.ui.food},
+        {value:'Fashion',label: this.ui.fashion},
+        {value: 'Engineering',label: this.ui.engineering},
+        {value: 'Other',label: this.ui.other}
+      ];
+    },1000);
+
     this.postId = this.route.snapshot.paramMap.get('id');
     if (localStorage.getItem('currentUser')) {
       this.currentUser = localStorage.getItem('currentUser');

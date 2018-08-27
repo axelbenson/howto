@@ -1,15 +1,15 @@
 <section class='animated slideInUp'>
     <p><img src='https://res.cloudinary.com/howtoru/image/upload/v1534550394/img/logo.png'/></p>
-    <h4 class="text-center" id='posts'>Create your own instruction with <strong>HowTo</strong></h4>
+    <h4 class="text-center" id='posts'>{{ui.constructorTitle}} <strong>HowTo</strong></h4>
     
     <div class="md-form">
         <i class="fa fa-user prefix grey-text"></i>
         <input type="text" [formControl]="name" id="form-name" class="form-control" mdbInputDirective>
-        <label for="form-name">The name of your instruction</label>
+        <label for="form-name">{{ui.theNameOfInstruction}}</label>
     </div>
     
     <mat-form-field>
-        <mat-select placeholder="Choose a category" id='form-section' [formControl]="section">
+        <mat-select placeholder="{{ui.chooseACategory}}" id='form-section' [formControl]="section">
           <mat-option *ngFor="let section of sections" [value]="section.value">
             {{section.label}}
           </mat-option>
@@ -23,7 +23,7 @@
               {{tag}}
               <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close" aria-hidden="true"></i></mat-icon>
             </mat-chip>
-            <input placeholder="Add hashtag"
+            <input placeholder="{{ui.addHashtag}}"
                    [matChipInputFor]="chipList"
                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                    [matChipInputAddOnBlur]="addOnBlur"
@@ -34,27 +34,26 @@
     <div class="md-form">
         <i class="fa fa-edit prefix grey-text"></i>
        <textarea type="text" id="form7" [formControl]="short" class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
-       <label for="form7">Short description (up to 150 characters)</label>
+       <label for="form7">{{ui.shortDescription}}</label>
     </div> 
     
     <div class="md-form" id='full_desc'>
        <textarea type="text" id="form8" [formControl]="full" class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
-       <label for="form8">Full description</label>
+       <label for="form8">{{ui.fullDescription}}</label>
     </div> 
 
     <div class="md-form" >
         <i class="fa fa-cart-plus prefix grey-text"></i>
-        <textarea type="text" id="form9" [formControl]="needed" placeholder="For this trip we need:
-        - One thing..." class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
-        <label for="form9">Needed things</label>
+        <textarea type="text" id="form9" [formControl]="needed" placeholder="{{ui.forThisWeNeed}}" class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
+        <label for="form9">{{ui.neededThings}}</label>
      </div> 
 
      <div class="text-center">
         <div class="form-group file-area">
             <input type="file" required="required" (change)="onFileUpload($event)"/>
             <div class="file-dummy">
-              <div class="success" hidden>Ok, you can continue</div>
-              <div class="default" >Choose the main picture or drag it here</div>
+              <div class="success" hidden>{{ui.canContinue}}</div>
+              <div class="default" >{{ui.chooseTheMainPicture}}</div>
             </div>
         </div>
     </div>
@@ -70,7 +69,9 @@
               </mat-panel-title>
               <mat-panel-description>
                   <div class="md-form" id='stepp'>
-                      <input type="text" id="form-step-name" placeholder="Step title" class="form-control" (keydown)="handleSpacebar($event)" mdbInputDirective>
+                    <p>{{ui.stepTitle}}</p>
+                    <input type="text" id="form-step-name" class="form-control" (keydown)="handleSpacebar($event)" mdbInputDirective>
+
                   </div>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -81,15 +82,16 @@
                 <div class="mat-vertical-content">
                   <div class="ng-star-inserted">
                       <div class="md-form" id='step_desc'>
-                          <textarea type="text" id="form10" name='step_desc' placeholder="Step description" class="md-textarea md-textarea-auto form-control" (keyup)='autogrow($event)' mdbInputDirective></textarea>
-                       </div> 
+                        <p>{{ui.stepDescription}}</p>
+                        <textarea type="text" id="form10" name='step_desc' required class="md-textarea md-textarea-auto form-control" (keyup)='autogrow($event)' mdbInputDirective></textarea> 
+                        </div> 
 
                        <div class="text-center">
                           <div class="form-group file-area">
                               <input type="file" name='pic'/>
                               <div class="file-dummy">
-                                <div class="success" hidden>Ok, you can continue</div>
-                                <div class="default">Choose a picture or drag it here</div>
+                                <div class="success" hidden>{{ui.canContinue}}</div>
+                                <div class="default">{{ui.chooseAPicture}}</div>
                               </div>
                           </div>
                       </div> 
@@ -108,7 +110,7 @@
                       </div>   
                   </mat-panel-title>
                   <mat-panel-description>
-                      <h5>Add step</h5>
+                      <h5>{{ui.addStep}}</h5>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
             
@@ -128,7 +130,7 @@
         </div>
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
         <div id='button'>
-            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>Finish</button>
+            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
         </div>
         <p-toast position="bottom-center" life='10000'></p-toast>
         <hr/>
