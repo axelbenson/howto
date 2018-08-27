@@ -113,9 +113,7 @@ mdb-card {
     padding-left: 0 !important;
     max-height: 200px !important;
 }
-/deep/ .ng-star-inserted {
-    font-size: 20px !important;
-}
+
 /deep/ .mat-vertical-content-container {
     margin-left: 49px !important; 
 }
@@ -218,6 +216,9 @@ mat-panel-description {
 }
 #title p {
     font-weight: 300;
+}
+/deep/mdb-card-img img{
+    margin: 0 auto !important;
 }
 
 

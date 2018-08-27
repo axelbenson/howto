@@ -20,4 +20,8 @@ export class PostsComponent implements OnInit {
     this.ui = this.localizationService.ui;
   }
 
+  getCategory(category){
+    return this.localizationService.getCategory(category);
+  }
+
 }

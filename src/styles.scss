@@ -6,6 +6,12 @@ body {
 #fullPage {
     min-height: 100%;
 }
+/deep/ .ui-toast {
+  width: 300px !important;
+}
+/deep/body .ui-widget {
+  font-size: 20px !important;
+}
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "src/xoverlay.css";

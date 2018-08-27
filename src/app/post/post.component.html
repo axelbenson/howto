@@ -55,7 +55,7 @@
         <mdb-card-body cascade="true" class="text-center" id='title'>
           <h4>{{post.title}}</h4>
           <p>{{ui.writtenBy}} <a routerLink="/user/{{user.login}}">{{user.login}}</a>, {{post.date}}</p>
-          <a [routerLink]="['/category/',post.category]"><p class="blue-text">{{post.category}}</p></a>
+          <a [routerLink]="['/category/',post.category]"><p class="blue-text">{{categoryLocal}}</p></a>
           <div *ngIf="!(liked || !isLoggedIn || (currentUser == post.author) )">
             <div class="stars" (click)='updateStars(1)'>★</div>
             <div class="stars" (click)='updateStars(2)'>★</div>

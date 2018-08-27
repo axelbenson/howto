@@ -38,6 +38,7 @@ ui: Localization;
   liked: boolean;
   isLoggedIn: boolean;
   formData: FormData = new FormData();
+  categoryLocal: string;
 
   ngOnInit() {
     this.localizationService.subject.subscribe( ui => {
@@ -61,6 +62,7 @@ ui: Localization;
         this.router.navigate(['/main']);
       }
       this.post = data;
+      this.categoryLocal = this.localizationService.getCategory(this.post.category);
       this.checkStars(id,localStorage.getItem('currentUser'));
       this.getUser(this.post.author);
       this.getSteps(data.post_id, data.numSteps);

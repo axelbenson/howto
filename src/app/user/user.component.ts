@@ -135,7 +135,7 @@ export class UserComponent implements OnInit {
     }
     this.httpClient.post("http://howto.ru/edit_user.php", this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
-          this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
+          this.messageService.add({severity:'success', life: 5000, summary:'Succes', detail:data.success});
           this.getUser();
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:data.error});

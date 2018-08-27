@@ -96,5 +96,4 @@ export class NavbarComponent implements OnInit {
     localStorage.setItem('language', language);
     window.location.reload();
   }
-
 }

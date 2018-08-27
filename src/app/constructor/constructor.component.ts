@@ -66,6 +66,7 @@ export class ConstructorComponent implements OnInit {
       let clone = this.step.cloneNode(true);
       document.getElementById('step').remove(); 
       clone.addEventListener('keyup', this.autogrow);
+      clone.addEventListener('change', this.onFileUpload);
       document.getElementById('add_step').parentElement.insertBefore(clone,document.getElementById('add_step'));
       this.sections = [
         {value:'Hobbies', label: this.ui.hobbies},
