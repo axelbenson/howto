@@ -1,8 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-		echo "access denied";
-} else {
-
 	require_once("dbconnect.php");
 	$result = $mysqli->query("SELECT hashtags FROM instructions ORDER BY RAND()");
  	$response = [];
@@ -29,6 +25,4 @@ if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
 	header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, If-Modified-Since, Cache-Control, Pragma");
 	echo json_encode( $response ); 
-
-}
 ?>

@@ -1,7 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-        echo "access denied";
-} else {
     ini_set('display_errors',0);
     $user = json_decode(file_get_contents('php://input'), true);
     $response = [
@@ -143,5 +140,3 @@ if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
                     exit();
                 }
             }
-
-}

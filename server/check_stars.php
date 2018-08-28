@@ -1,8 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-		echo "access denied";
-} else {
-
 require_once("dbconnect.php");
 header('Content-type: application/json');
 header("Access-Control-Allow-Origin: *");
@@ -12,7 +8,5 @@ if ($result->num_rows > 0) {
 	echo "true";
 } else {
 	echo "false";
-}
-
 }
 ?>

@@ -1,6 +1,4 @@
 <?php
-
-
 require_once("dbconnect.php");
 $posts = [];
 $result = $mysqli->query("SELECT id, category, name, author, picture, short_description, raiting, date, ingredients, num_steps, full_description, hashtags FROM (
@@ -27,20 +25,6 @@ $rows = $result->num_rows;
 	header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, If-Modified-Since, Cache-Control, Pragma");
 	echo json_encode( $posts ); 
-
-
-/*
-
-SELECT id, name, author, category, hashtags, short_description, picture, full_description, date, raiting, ingredients, num_steps FROM (
-SELECT instructions.id, instructions.name,instructions.author, instructions.category, instructions.hashtags, instructions.short_description, instructions.picture, instructions.full_description, instructions.date, instructions.raiting, instructions.ingredients, instructions.num_steps
-FROM instructions INNER JOIN steps ON instructions.id = steps.post_id
-WHERE ((MATCH(`name`, `category`, `hashtags`, `short_description`, `full_description`, `ingredients`) AGAINST ('*рассказываем*' IN BOOLEAN MODE)) OR (MATCH(`title`, `text`) AGAINST ('*рассказываем*' IN BOOLEAN MODE)))
-
-)AS T
-GROUP BY id, name, author, hashtags, short_description, picture, full_description, date, raiting, ingredients, num_step
-
-*/
-
 ?>
 
 

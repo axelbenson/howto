@@ -1,8 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-		echo "access denied";
-} else {
-
 require_once("dbconnect.php");
 
 if ($_POST['type'] == 'like'){
@@ -15,8 +11,6 @@ if ($_POST['type'] == 'dislike'){
 
 	$result = $mysqli->query("UPDATE comments, users SET comments.raiting=comments.raiting-1, users.raiting=users.raiting-1 WHERE comments.id='".$_POST['id']."' AND users.login='".$_POST['author']."'");
 	$result2 = $mysqli->query("DELETE FROM likes WHERE `post_id`='".$_POST['id']."' AND `author_login`='".$_POST['login']."'");
-
-}
 
 }
 ?>

@@ -1,8 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-		echo "access denied";
-} else {
-
 ini_set('display_errors',0);
 $response = [
         "success" => "",
@@ -89,5 +85,4 @@ if ($_POST['type'] == 'notsu') {
 	}
 }
 
-}
 ?>

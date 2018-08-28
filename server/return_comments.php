@@ -1,7 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-		echo "access denied";
-} else {
     require_once("dbconnect.php");
 
 	$comments_result = $mysqli->query("SELECT comments.*, users.raiting, users.avatar FROM users INNER JOIN comments ON users.login = comments.author_login WHERE comments.post_id='".$_GET['postId']."' ORDER BY comments.id");
@@ -58,5 +55,4 @@ if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
 	header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, If-Modified-Since, Cache-Control, Pragma");
 	echo json_encode( $comments );
-}
 ?>

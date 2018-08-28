@@ -1,8 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-		echo "access denied";
-} else {
-
 require_once("dbconnect.php");
 
 $response = [
@@ -25,8 +21,4 @@ $response = [
 	$response['success'] = "Успех!";
 	echo json_encode( $response );
 	exit();
-
-
-
-}
 ?>

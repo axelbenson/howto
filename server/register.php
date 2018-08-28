@@ -1,8 +1,4 @@
 <?php
-if (strpos($_SERVER['HTTP_REFERER'],'4200') === false) {
-        echo "access denied";
-} else {
-
 ini_set('display_errors',0);
 require 'Cloudinary.php';
 require 'Uploader.php';
@@ -249,8 +245,5 @@ $response = [
             //Закрываем подключение к БД
             $mysqli->close();
             
-            exit();
-
-
- }  
+            exit();  
 ?>
