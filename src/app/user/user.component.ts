@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../http.service';
-import { FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormControl} from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
 import { UserProfile } from '../user-profile';
@@ -34,7 +33,6 @@ export class UserComponent implements OnInit {
     
     private sharedService: SharedService,
     private route: ActivatedRoute,
-    private httpClient: HttpClient,
     private messageService: MessageService,
     private httpService: HttpService,
     private router: Router,
@@ -133,7 +131,7 @@ export class UserComponent implements OnInit {
     } else {
       this.formData.append('location', this.location.value);
     }
-    this.httpClient.post("http://howto.ru/edit_user.php", this.formData).subscribe((data: Response)=> {
+    this.httpService.editUser(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', life: 5000, summary:'Succes', detail:data.success});
           this.getUser();

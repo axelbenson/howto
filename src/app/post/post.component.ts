@@ -3,7 +3,6 @@ import {PageScrollConfig} from 'ng2-page-scroll';
 import {MatStepper} from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../http.service';
-import { HttpClient } from '@angular/common/http';
 import { UserCard } from '../user-card';
 import { PostCard } from '../post-card';
 import { Step } from '../step';
@@ -21,7 +20,6 @@ export class PostComponent implements OnInit {
 @ViewChild('stepper') stepper: MatStepper;
 ui: Localization;
   constructor(
-    private httpClient: HttpClient,
     private route: ActivatedRoute,
     private httpService: HttpService,
     private router: Router,
@@ -72,7 +70,7 @@ ui: Localization;
   }
 
   checkStars(id,login) {
-    this.httpClient.get('http://howto.ru/check_stars.php?post_id='+id+'&login='+login).subscribe(result => {
+    this.httpService.checkStars(id,login).subscribe(result => {
       if (''+result === 'true'){
         this.liked = true;
         
@@ -110,7 +108,7 @@ ui: Localization;
     this.formData.append('post_id', ''+this.post.post_id);
     this.formData.append('author', this.post.author);
     this.formData.append('login', localStorage.getItem('currentUser'));
-    this.httpClient.post("http://howto.ru/update_stars.php", this.formData).subscribe(data => {
+    this.httpService.updateStars(this.formData).subscribe(data => {
       console.log(data);
     });
     this.liked = true;

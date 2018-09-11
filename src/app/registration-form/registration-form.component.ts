@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpService } from '../http.service';
 import { MessageService } from 'primeng/api';
 import { Response } from '../response';
 import { LocalizationService } from '../localization.service';
@@ -26,7 +26,7 @@ export class RegistrationFormComponent implements OnInit {
   wait: boolean;
   
   constructor(
-    private httpClient: HttpClient,
+    private httpService: HttpService,
     private messageService: MessageService,
     private localizationService: LocalizationService
   ) { }
@@ -62,7 +62,7 @@ export class RegistrationFormComponent implements OnInit {
       this.formData.append('age', this.age.value);
       this.formData.append('password', this.password.value);
       this.formData.append('confirm_password', this.confirmPassword.value);
-      this.httpClient.post("http://howto.ru/register.php", this.formData).subscribe((data: Response)=> {
+      this.httpService.register(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
         } else {

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../http.service';
-import { HttpClient } from '@angular/common/http';
 import { Comment } from '../../comment';
 import { LocalizationService } from '../../localization.service';
 import { Localization } from '../../localization';
@@ -21,7 +20,6 @@ export class CommentsGroupComponent implements OnInit {
   comment = new FormControl('');
   @Input() postId: number;
   constructor(
-    private httpClient: HttpClient,
     private httpService: HttpService,
     private localizationService: LocalizationService
   ) { }
@@ -52,7 +50,7 @@ export class CommentsGroupComponent implements OnInit {
     this.formData.append('id', id);
     this.formData.append('author', author);
     this.formData.append('login', this.currentUser);
-    this.httpClient.post("http://howto.ru/update_likes.php", this.formData).subscribe(data => {
+    this.httpService.updateLikes(this.formData).subscribe(data => {
       console.log();
     });
     this.getComments(this.postId, this.currentUser);
@@ -63,7 +61,7 @@ export class CommentsGroupComponent implements OnInit {
     this.commentData.append('postId', ''+this.postId);
     this.commentData.append('login', this.currentUser);
     this.commentData.append('text', this.comment.value);
-    this.httpClient.post("http://howto.ru/add_comment.php", this.commentData).subscribe(data => {
+    this.httpService.addComment(this.commentData).subscribe(data => {
       console.log(data);
     });
     this.getComments(this.postId, this.currentUser);

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../http.service';
 import { MessageService } from 'primeng/api';
-import { SharedService } from '../shared.service';
 import { Response } from '../response';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER} from '@angular/cdk/keycodes';
@@ -30,8 +29,7 @@ export class ConstructorComponent implements OnInit {
   sections: Section[];
   
   constructor(
-    private sharedService: SharedService,
-    private httpClient: HttpClient,
+    private httpService: HttpService,
     private messageService: MessageService,
     private router: Router,
     private localizationService: LocalizationService
@@ -181,19 +179,24 @@ export class ConstructorComponent implements OnInit {
     for (let a = 0; a < this.counter; a++)
     {
       let node = <HTMLInputElement>(document.getElementById('form10'))
-      this.formData.append('stepDesc'+(a+1), node.value);
-      document.getElementById('form10').setAttribute('id','form1');
+      if (node) { 
+        this.formData.append('stepDesc'+(a+1), node.value); 
+        document.getElementById('form10').setAttribute('id','form1');
+      }
     }
 
     for (let a = 0; a < this.counter; a++)
     {
       let node = <HTMLInputElement>(document.getElementById('form-step-name'))
-      this.formData.append('stepName'+(a+1), node.value);
-      document.getElementById('form-step-name').setAttribute('id','form1');
+      if (node){
+        this.formData.append('stepName'+(a+1), node.value);
+        document.getElementById('form-step-name').setAttribute('id','form1');
+      }
+      
     }
     
   
-    this.httpClient.post("http://howto.ru/upload_instruction.php", this.formData).subscribe((data: Response)=> {
+    this.httpService.uploadPost(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
           this.router.navigate(['/user/'+localStorage.getItem('currentUser')]);

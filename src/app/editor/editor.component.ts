@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { Response } from '../response';
 import {MatChipInputEvent} from '@angular/material';
@@ -9,7 +8,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
 import { SharedService } from '../shared.service';
-import { UserCard } from '../user-card';
 import { PostCard } from '../post-card';
 import { Step } from '../step';
 import { LocalizationService } from '../localization.service';
@@ -35,8 +33,6 @@ export class EditorComponent implements OnInit {
   sections: Section[];
   
   constructor(
-    private sharedService: SharedService,
-    private httpClient: HttpClient,
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
@@ -210,7 +206,7 @@ export class EditorComponent implements OnInit {
     }
     
   
-    this.httpClient.post("http://howto.ru/edit_instruction.php", this.formData).subscribe((data: Response)=> {
+    this.httpService.editPost(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
           this.router.navigate(['/user/'+localStorage.getItem('currentUser')]);

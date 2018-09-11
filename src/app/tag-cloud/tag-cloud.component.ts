@@ -24,9 +24,9 @@ export class MyTagCloudComponent implements OnInit {
     options: CloudOptions;
 
   zoomOnHoverOptions: ZoomOnHoverOptions = {
-    scale: 1.5, // Elements will become 130 % of current zize on hover
-    transitionTime: 1.2, // it will take 1.2 seconds until the zoom level defined in scale property has been reached
-    delay: 0.2, // Zoom will take affect after 0.8 seconds
+    scale: 1.5,
+    transitionTime: 1.2,
+    delay: 0.2,
   };
  
   data: CloudData[];

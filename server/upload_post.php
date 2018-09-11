@@ -17,10 +17,10 @@ require_once('dbconnect.php');
 
 $date = date('Y-m-d');
 
-if (isset($_POST['name'])) {
-	if (isset($_POST['section'])) {
-		if (isset($_POST['short'])) {
-			if (isset($_POST['full'])) {
+if ($_POST['name']!='') {
+	if ($_POST['section']!='') {
+		if ($_POST['short']!='') {
+			if ($_POST['full']!='') {
 
 				$allowed = array('png', 'jpg', 'gif', 'jpeg');
 
@@ -96,13 +96,17 @@ if (isset($_POST['name'])) {
 							file_put_contents('post_id.txt', $post_id." ".$pic);
 							$stepName = $_POST['stepName'.$a];
 							$stepDesc = $_POST['stepDesc'.$a];
-							$result = $mysqli->query("INSERT INTO `steps` (`post_id`, `number`, `title`, `text`, `picture`) VALUES ('".$post_id."', '".$a."', '".$stepName."', '".$stepDesc."', '".$pic."')");
+							
+							if ($stepName && $stepDesc) {
+								$result = $mysqli->query("INSERT INTO `steps` (`post_id`, `number`, `title`, `text`, `picture`) VALUES ('".$post_id."', '".$a."', '".$stepName."', '".$stepDesc."', '".$pic."')");
 
-							if (!$result) {
-								$response['error'] = "Ошибка при добавлении шага ".$a." в БД!";
-							    echo json_encode( $response );
-							    exit();
+								if (!$result) {
+									$response['error'] = "Ошибка при добавлении шага ".$a." в БД!";
+								    echo json_encode( $response );
+								    exit();
+								}
 							}
+							
 
 						}
 

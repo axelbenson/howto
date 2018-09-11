@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpService } from '../http.service';
 import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
 import { PostCard } from '../post-card';
@@ -21,8 +21,7 @@ export class EditablePostsComponent implements OnInit {
 
   @Input() postCards: PostCard[];
   constructor(
-    private route: ActivatedRoute,
-    private httpClient: HttpClient,
+    private httpService: HttpService,
     private messageService: MessageService,
     private router: Router,
     private sharedService: SharedService,
@@ -47,7 +46,7 @@ export class EditablePostsComponent implements OnInit {
   deletePost() {
     this.wait = true;
     this.formData.append('postId',''+this.postId);
-    this.httpClient.post("http://howto.ru/delete_post.php", this.formData).subscribe((data: Response)=> {
+    this.httpService.deletePost(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
           this.sharedService.IsDeletedPost.next(true);
@@ -57,5 +56,9 @@ export class EditablePostsComponent implements OnInit {
         if (data) {this.wait = false;}
         
       });
+  }
+
+  getCategory(category){
+    return this.localizationService.getCategory(category);
   }
 }

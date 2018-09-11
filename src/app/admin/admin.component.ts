@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material';
 import { HttpService } from '../http.service';
-import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { UserCard } from '../user-card';
@@ -28,8 +27,7 @@ export class AdminComponent implements OnInit {
   selection = new SelectionModel<UserCard>(true, []);
 
   constructor(
-    private httpService: HttpService, 
-    private httpClient: HttpClient,
+    private httpService: HttpService,
     private messageService: MessageService,
     private router: Router,
     private sharedService: SharedService,
@@ -68,7 +66,6 @@ export class AdminComponent implements OnInit {
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
@@ -90,7 +87,7 @@ export class AdminComponent implements OnInit {
     this.formData.append('length', ''+this.selection.selected.length);
     this.formData.append('type', type);
     
-    this.httpClient.post("http://howto.ru/admin_actions.php", this.formData).subscribe((data: Response)=> {
+    this.httpService.adminAction(this.formData).subscribe((data: Response)=> {
       if (data.error == "") {
         this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
         for (let a = 0; a < this.selection.selected.length; a++)

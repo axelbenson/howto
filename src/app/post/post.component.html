@@ -27,16 +27,18 @@
         <hr/>
             
         <div class="list-group" id='sideAgenda'>
-          <div class='bottom-line'*ngIf='post.ingredients'>
+          <div class='bottom-line'>
+              <a pageScroll href="#description" class="list-group-item waves-light" mdbWavesEffect>{{ui.description}}</a>
+          </div>
+          <div class='bottom-line' *ngIf='post.ingredients'>
               <a pageScroll href="#ingredients" class="list-group-item waves-light" mdbWavesEffect>{{ui.ingredients}}</a>
-        </div>
-        <div *ngFor='let step of steps' class='bottom-line'>
-            <a pageScroll  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
-        </div>
-        <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
-          
-          
-          
+          </div>
+          <div *ngIf='steps[0].number'>
+            <div *ngFor='let step of steps' class='bottom-line'>
+              <a pageScroll  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
+            </div>
+          </div>
+          <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>  
         </div>
         <br/>
       </div>
@@ -71,36 +73,39 @@
           
       <!--Excerpt-->
       <div class="excerpt mt-5">   
-        <h5>{{ui.description}}</h5>
+        <h5 id='description'>{{ui.description}}</h5>
         <hr/>
         <p>{{post.fullDescription}}</p>
 
-        <br/>
-        <h5>{{ui.agenda}}</h5>
-        <hr/>
-            
-        <div class="list-group">
-          <a pageScroll href="#ingredients" class="list-group-item waves-light" *ngIf='post.ingredients' mdbWavesEffect>{{ui.ingredients}}</a>
-          <a pageScroll *ngFor='let step of steps'  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
-          <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
+        <div *ngIf='steps[0].number'>
+          <br/>
+          <h5>{{ui.agenda}}</h5>
+          <hr/>
+              
+          <div class="list-group">
+            <a pageScroll href="#ingredients" class="list-group-item waves-light" *ngIf='post.ingredients' mdbWavesEffect>{{ui.ingredients}}</a>
+            <a pageScroll *ngFor='let step of steps'  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
+            <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
+          </div>
+                  
+          <br/>
+          <div *ngIf='post.ingredients'>
+              <h5 id='ingredients'>{{ui.ingredients}}</h5>
+              <hr/>
+      
+              <p>{{post.ingredients}}</p>
+          </div>
         </div>
-                
-        <br/>
-        <div *ngIf='post.ingredients'>
-            <h5 id='ingredients'>{{ui.ingredients}}</h5>
-            <hr/>
-    
-            <p>{{post.ingredients}}</p>
-        </div>
+        
         
                 
         <br/>
-        <h5 id='ingredients'>{{ui.instruction}}</h5>
+        <h5 *ngIf='steps[0].number' id='ingredients'>{{ui.instruction}}</h5>
         <hr/>      
         <mat-vertical-stepper #stepper></mat-vertical-stepper>
            
         <div *ngFor='let step of steps' id='{{step.number}}' (click)="toggle($event)"> 
-          <mat-expansion-panel id='panel'>
+          <mat-expansion-panel id='panel' *ngIf='steps[0].number'>
               <mat-expansion-panel-header>
                 <mat-panel-title>
                     <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
