@@ -48,6 +48,12 @@
         <label for="form9">{{ui.neededThings}}</label>
      </div> 
 
+    <div class="md-form">
+        <i class="fa fa-youtube prefix grey-text"></i>
+        <input type="text" [formControl]="videoLink" id="form-videoLink" class="form-control" mdbInputDirective>
+        <label for="form-videoLink">{{ui.youtubeLink}}</label>
+    </div>
+
      <div class="text-center">
         <div class="form-group file-area">
             <input type="file" required="required" (change)="onFileUpload($event)"/>

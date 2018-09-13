@@ -96,5 +96,7 @@
 	"name": "Name",
 	"location": "Location",
 	"age": "Age",
-	"addHashtag": "Add hashtag"
+	"addHashtag": "Add hashtag",
+	"video": "Video",
+	"youtubeLink": "YouTube Link (optional)"
 }

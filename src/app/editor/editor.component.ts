@@ -58,6 +58,7 @@ export class EditorComponent implements OnInit {
   short = new FormControl('', [Validators.required, Validators.maxLength(150)] );
   full = new FormControl('', Validators.required );
   needed = new FormControl('');
+  videoLink = new FormControl('');
 
   ngOnInit() {
     this.localizationService.subject.subscribe( ui => {
@@ -186,6 +187,11 @@ export class EditorComponent implements OnInit {
       this.formData.append('section', this.post.category);
     } else {
       this.formData.append('section', this.section.value);
+    }
+    if (!this.videoLink.value){
+      this.formData.append('videoLink', this.post.videoLink);
+    } else {
+      this.formData.append('videoLink', this.videoLink.value);
     }
     this.formData.append('numSteps', ''+this.post.numSteps);
     this.formData.append('author', localStorage.getItem('currentUser'));

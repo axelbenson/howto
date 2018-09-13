@@ -48,6 +48,7 @@ export class ConstructorComponent implements OnInit {
   short = new FormControl('', [Validators.required, Validators.maxLength(150)] );
   full = new FormControl('', Validators.required );
   needed = new FormControl('');
+  videoLink = new FormControl('');
 
   ngOnInit() {
     if (!localStorage.getItem('currentUser')) {
@@ -175,6 +176,7 @@ export class ConstructorComponent implements OnInit {
     this.formData.append('tags', this.tags.toString());
     this.formData.append('numSteps', ''+this.counter);
     this.formData.append('author', localStorage.getItem('currentUser'));
+    this.formData.append('videoLink', this.videoLink.value);
   
     for (let a = 0; a < this.counter; a++)
     {

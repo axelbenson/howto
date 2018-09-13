@@ -21,7 +21,16 @@ if (isset($_POST['name'])) {
 		if (isset($_POST['short'])) {
 			if (isset($_POST['full'])) {
 
+				$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $_POST['videoLink']);
+					if ($link == $_POST['videoLink']) {
+						$link = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $_POST['videoLink']);
+					}
+					if (strpos($link, "embed") == false) {
+						$link = '';
+					}
+
 				if ($_FILES['file0']['name']) {
+
 
 					
 
@@ -65,9 +74,9 @@ if (isset($_POST['name'])) {
 					    array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$mask));
 					 }
 
-					 $result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `ingredients`='".($_POST['needed'])."', `picture`='".$uploadfile."' WHERE id='".$_POST['postId']."'");
+					 $result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `ingredients`='".($_POST['needed'])."', `picture`='".$uploadfile."', `video_link`='".$link."' WHERE id='".$_POST['postId']."'");
 				} else {
-					$result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `ingredients`='".($_POST['needed'])."' WHERE id='".$_POST['postId']."'");
+					$result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `ingredients`='".($_POST['needed'])."', `video_link`='".$link."' WHERE id='".$_POST['postId']."'");
 				}
 
 

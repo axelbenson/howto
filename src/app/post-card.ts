@@ -10,4 +10,5 @@ export class PostCard {
     ingredients: string;
     fullDescription: string;
     numSteps: number;
+    videoLink: string;
   }

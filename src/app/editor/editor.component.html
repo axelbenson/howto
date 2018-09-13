@@ -33,6 +33,12 @@
         <textarea type="text" id="form9" [formControl]="needed" value="{{post.ingredients}}" mdbInputDirective></textarea>
         <label for="form9"></label>
      </div> 
+
+     <div class="md-form">
+        <i class="fa fa-youtube prefix grey-text"></i>
+        <input type="text" [formControl]="videoLink" id="form-videoLink" class="form-control" value="{{post.videoLink}}" mdbInputDirective>
+        <label for="form-videoLink"></label>
+    </div>
      
      <img id="step_img" class='img-fluid view view-cascade overlay' src="{{post.picture}}">
      <div class="text-center">

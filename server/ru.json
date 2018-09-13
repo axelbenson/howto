@@ -96,5 +96,7 @@
 	"name": "Имя",
 	"location": "Местоположение",
 	"age": "Возраст",
-	"addHashtag": "Добавьте теги"
+	"addHashtag": "Добавьте теги",
+	"video": "Видео",
+	"youtubeLink": "Ссылка YouTube (опционально)"
 }

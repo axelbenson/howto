@@ -91,6 +91,8 @@ export class Localization {
 	"cancel": string;
 	"ourAmazingUsers": string;
 	"setSuperUser": string;
+	"video": string;
+	"youtubeLink": string;
 }
 
 

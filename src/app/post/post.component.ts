@@ -8,6 +8,7 @@ import { PostCard } from '../post-card';
 import { Step } from '../step';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +20,9 @@ export class PostComponent implements OnInit {
 
 @ViewChild('stepper') stepper: MatStepper;
 ui: Localization;
+urlSafe: SafeResourceUrl;
   constructor(
+    public sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private httpService: HttpService,
     private router: Router,
@@ -61,6 +64,7 @@ ui: Localization;
       }
       this.post = data;
       this.categoryLocal = this.localizationService.getCategory(this.post.category);
+      this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.post.videoLink);
       this.checkStars(id,localStorage.getItem('currentUser'));
       this.getUser(this.post.author);
       this.getSteps(data.post_id, data.numSteps);

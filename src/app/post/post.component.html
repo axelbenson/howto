@@ -33,6 +33,10 @@
           <div class='bottom-line' *ngIf='post.ingredients'>
               <a pageScroll href="#ingredients" class="list-group-item waves-light" mdbWavesEffect>{{ui.ingredients}}</a>
           </div>
+          <div class='bottom-line' *ngIf='post.videoLink'>
+              <a pageScroll href="#video" class="list-group-item waves-light" mdbWavesEffect>{{ui.video}}</a>
+           </div>
+          
           <div *ngIf='steps[0].number'>
             <div *ngFor='let step of steps' class='bottom-line'>
               <a pageScroll  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
@@ -84,10 +88,11 @@
               
           <div class="list-group">
             <a pageScroll href="#ingredients" class="list-group-item waves-light" *ngIf='post.ingredients' mdbWavesEffect>{{ui.ingredients}}</a>
+            <a pageScroll href="#video" class="list-group-item waves-light" *ngIf='post.videoLink' mdbWavesEffect>{{ui.video}}</a>
             <a pageScroll *ngFor='let step of steps'  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
             <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
           </div>
-                  
+        </div>
           <br/>
           <div *ngIf='post.ingredients'>
               <h5 id='ingredients'>{{ui.ingredients}}</h5>
@@ -95,7 +100,17 @@
       
               <p>{{post.ingredients}}</p>
           </div>
-        </div>
+       
+          <br/>
+          <div *ngIf='post.videoLink'>
+              <h5 id='video'>{{ui.video}}</h5>
+              <hr/>
+      
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" [src]="urlSafe" allowfullscreen></iframe>
+              </div>
+          </div>
+        
         
         
                 

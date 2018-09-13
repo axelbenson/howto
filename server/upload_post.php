@@ -63,7 +63,18 @@ if ($_POST['name']!='') {
 				    array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])));
 				 }
 
-				$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `date`, `ingredients`, `num_steps`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$date."','".$_POST['needed']."', '".$_POST['numSteps']."')");
+				if ($_POST['videoLink']=='') {
+					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `date`, `ingredients`, `num_steps`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$date."','".$_POST['needed']."', '".$_POST['numSteps']."')");
+				} else {
+					$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $_POST['videoLink']);
+					if ($link == $_POST['videoLink']) {
+						$link = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $_POST['videoLink']);
+					}
+					if (strpos($link, "embed") == false) {
+						$link = '';
+					}
+					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `date`, `ingredients`, `num_steps`, `video_link`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$date."','".$_POST['needed']."', '".$_POST['numSteps']."', '".$link."')");
+				}
 
 				if (!$result) {
 					$response['error'] = "Ошибка при загрузке в БД!";
